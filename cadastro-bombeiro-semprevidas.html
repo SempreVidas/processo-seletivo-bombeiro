@@ -899,7 +899,9 @@ function enviar() {
     aph: document.querySelector('input[name="aph"]:checked')?.value || '',
     dea: document.querySelector('input[name="dea"]:checked')?.value || '',
     cursos_nr: document.getElementById('cursos_nr').value,
-    timestamp: new Date().toLocaleString('pt-BR')
+    timestamp: new Date().toLocaleString('pt-BR'),
+    lat: window._candidatoLat || '',
+    lng: window._candidatoLng || ''
   };
 
   // Valida campos obrigatórios básicos
@@ -927,6 +929,26 @@ function enviar() {
     window.scrollTo({top: 0, behavior: 'smooth'});
   });
 }
+
+// Busca coordenadas reais quando candidato preenche o CEP
+document.getElementById('cep').addEventListener('blur', async function() {
+  const cep = this.value.replace(/\D/g,'');
+  if (cep.length === 8) {
+    try {
+      const viacep = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+      const addr = await viacep.json();
+      if (!addr.erro) {
+        const q = encodeURIComponent((addr.logradouro||'') + ', ' + addr.localidade + ', ' + addr.uf + ', Brasil');
+        const geo = await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + q + '&limit=1', {headers:{'User-Agent':'SempreVidas/1.0'}});
+        const geoData = await geo.json();
+        if (geoData && geoData[0]) {
+          window._candidatoLat = geoData[0].lat;
+          window._candidatoLng = geoData[0].lon;
+        }
+      }
+    } catch(e) { console.log('Erro geoloc CEP'); }
+  }
+});
 </script>
 </body>
 </html>
