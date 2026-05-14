@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SempreVidas — Painel Interno</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--laranja:#F07C1F;--laranja-escuro:#C45E00;--laranja-claro:#FFF3E8;--preto:#1A1A1A;--cinza:#6B6B6B;--cinza-claro:#F5F5F5;--branco:#FFFFFF;--borda:#E8E8E8;--verde:#22C55E;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',sans-serif;background:#F8F5F2;color:var(--preto);}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:var(--preto);z-index:9999;display:flex;align-items:center;justify-content:center;}
+.login-box{background:#1E1E1E;border:1px solid #333;border-radius:20px;padding:40px;width:360px;text-align:center;}
+.login-logo{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;color:var(--branco);margin-bottom:6px;}
+.login-logo span{color:var(--laranja);}
+.login-sub{font-size:12px;color:#666;margin-bottom:28px;}
+.login-label{font-size:11px;font-weight:700;text-transform:uppercase;color:#888;display:block;text-align:left;margin-bottom:6px;}
+.login-input{width:100%;background:#2A2A2A;border:1.5px solid #444;border-radius:10px;padding:12px 14px;font-size:15px;color:var(--branco);outline:none;margin-bottom:16px;font-family:'Open Sans',sans-serif;letter-spacing:3px;transition:border-color 0.2s;}
+.login-input:focus{border-color:var(--laranja);}
+.login-btn{width:100%;background:var(--laranja);color:var(--branco);border:none;border-radius:10px;padding:13px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.login-btn:hover{background:var(--laranja-escuro);}
+.login-erro{font-size:12px;color:#EF4444;margin-top:10px;display:none;}
+
+/* HEADER */
+.header{background:var(--preto);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:var(--branco);}
+.logo span{color:var(--laranja);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.header-tag{font-size:11px;background:var(--laranja);color:var(--branco);padding:4px 12px;border-radius:100px;font-weight:600;}
+.logout-btn{font-size:12px;color:#888;background:none;border:1px solid #444;border-radius:6px;padding:4px 10px;cursor:pointer;}
+.logout-btn:hover{color:var(--branco);}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 52px);}
+
+/* SIDEBAR */
+.sidebar{background:var(--branco);border-right:1px solid var(--borda);padding:20px;overflow-y:auto;max-height:calc(100vh - 52px);position:sticky;top:52px;}
+.sidebar h2{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px;}
+.sidebar p{font-size:12px;color:var(--cinza);margin-bottom:16px;}
+.field{margin-bottom:12px;}
+.field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;display:block;margin-bottom:5px;}
+.field select{width:100%;border:1.5px solid var(--borda);border-radius:8px;padding:9px 11px;font-size:13px;font-family:'Open Sans',sans-serif;color:var(--preto);outline:none;background:var(--branco);}
+.field select:focus{border-color:var(--laranja);}
+.btn{width:100%;background:var(--laranja);color:var(--branco);border:none;border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;}
+.btn:hover{background:var(--laranja-escuro);}
+.btn-sec{width:100%;background:transparent;color:var(--cinza);border:1.5px solid var(--borda);border-radius:8px;padding:9px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+.btn-sec:hover{border-color:var(--laranja);color:var(--laranja);}
+.divider{height:1px;background:var(--borda);margin:14px 0;}
+.posto-item{border:1.5px solid var(--borda);border-radius:8px;padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:all 0.2s;}
+.posto-item:hover,.posto-item.sel{border-color:var(--laranja);background:var(--laranja-claro);}
+.posto-item-nome{font-size:12px;font-weight:700;}
+.posto-item-cep{font-size:11px;color:var(--cinza);margin-top:2px;}
+
+/* MAIN */
+.main{padding:24px 28px;}
+.posto-info{display:none;background:var(--laranja-claro);border:1.5px solid var(--laranja);border-radius:12px;padding:14px 18px;margin-bottom:20px;align-items:center;gap:14px;}
+.posto-info.show{display:flex;}
+.posto-info-nome{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--laranja-escuro);}
+.posto-info-end{font-size:12px;color:var(--laranja-escuro);margin-top:2px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.stat{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:14px 16px;}
+.stat-val{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:800;color:var(--laranja);}
+.stat-label{font-size:11px;color:var(--cinza);margin-top:2px;}
+.table-wrap{background:var(--branco);border:1px solid var(--borda);border-radius:12px;overflow:hidden;}
+.table-top{padding:14px 18px;border-bottom:1px solid var(--borda);display:flex;align-items:center;justify-content:space-between;}
+.table-title{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--cinza-claro);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--cinza);text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid var(--borda);}
+td{padding:11px 14px;border-bottom:1px solid var(--borda);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
+.rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;}
+.rank-1{background:#FEF3C7;color:#B45309;}
+.rank-2{background:#F1F5F9;color:#475569;}
+.rank-3{background:#FEF9C3;color:#92400E;}
+.rank-n{background:var(--cinza-claro);color:var(--cinza);}
+.dist-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}
+.dist-perto{background:#DCFCE7;color:#166534;}
+.dist-medio{background:#FEF9C3;color:#854D0E;}
+.dist-longe{background:#FEE2E2;color:#991B1B;}
+.btn-acao{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;margin-right:4px;}
+.btn-ver{background:#F0FDF4;color:#166534;}
+.btn-ver:hover{background:#DCFCE7;}
+.btn-editar{background:#EFF6FF;color:#1D4ED8;}
+.btn-editar:hover{background:#DBEAFE;}
+.btn-excluir{background:#FEF2F2;color:#DC2626;}
+.btn-excluir:hover{background:#FEE2E2;}
+.empty{text-align:center;padding:60px 20px;color:var(--cinza);}
+.empty-icon{font-size:40px;margin-bottom:12px;}
+.empty-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--preto);}
+.empty-sub{font-size:13px;}
+
+/* MODAL PERFIL COMPLETO */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--branco);border-radius:16px;width:100%;max-width:700px;margin:auto;}
+.modal-header{background:var(--preto);border-radius:16px 16px 0 0;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;}
+.modal-avatar{width:52px;height:52px;border-radius:50%;background:var(--laranja);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:var(--branco);flex-shrink:0;}
+.modal-nome{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:var(--branco);}
+.modal-sub{font-size:12px;color:#aaa;margin-top:3px;}
+.modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:#888;line-height:1;}
+.modal-close:hover{color:var(--branco);}
+.modal-body{padding:24px 28px;}
+
+/* DIST CARD */
+.dist-card{background:var(--laranja-claro);border:1.5px solid var(--laranja);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.dist-card-km{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:var(--laranja);}
+.dist-card-label{font-size:13px;color:var(--laranja-escuro);font-weight:600;}
+.dist-card-posto{font-size:12px;color:var(--laranja-escuro);margin-top:2px;}
+
+/* SEÇÕES DO PERFIL */
+.perfil-section{margin-bottom:20px;}
+.perfil-section-title{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--cinza);border-bottom:1px solid var(--borda);padding-bottom:8px;margin-bottom:12px;}
+.perfil-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.perfil-field label{font-size:11px;color:var(--cinza);display:block;margin-bottom:2px;}
+.perfil-field p{font-size:13px;font-weight:600;color:var(--preto);}
+.perfil-field.full{grid-column:1/-1;}
+.cert-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:var(--laranja-claro);color:var(--laranja-escuro);margin-right:6px;}
+.cert-badge.no{background:#FEF2F2;color:#DC2626;}
+
+.resposta-item{margin-bottom:14px;padding:12px 14px;background:var(--cinza-claro);border-radius:10px;}
+.resposta-pergunta{font-size:11px;font-weight:700;color:var(--cinza);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px;}
+.resposta-texto{font-size:13px;color:var(--preto);line-height:1.6;}
+
+/* ABAS */
+.abas{display:flex;gap:4px;margin-bottom:16px;background:var(--cinza-claro);padding:4px;border-radius:10px;}
+.aba{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--cinza);border-radius:8px;cursor:pointer;transition:all 0.2s;}
+.aba.active{background:var(--branco);color:var(--laranja);box-shadow:0 1px 4px rgba(0,0,0,0.08);}
+.aba-content{display:none;}
+.aba-content.active{display:block;}
+
+/* MODAL EDITAR */
+.modal-edit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:600;align-items:center;justify-content:center;}
+.modal-edit-overlay.open{display:flex;}
+.modal-edit{background:var(--branco);border-radius:16px;width:520px;max-height:85vh;overflow-y:auto;padding:28px;}
+.modal-edit-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.modal-edit-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.edit-field{display:flex;flex-direction:column;gap:5px;}
+.edit-field.full{grid-column:1/-1;}
+.edit-field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;}
+.edit-field input,.edit-field select{border:1.5px solid var(--borda);border-radius:8px;padding:9px 11px;font-size:13px;font-family:'Open Sans',sans-serif;color:var(--preto);outline:none;}
+.edit-field input:focus,.edit-field select:focus{border-color:var(--laranja);}
+.edit-actions{display:flex;gap:10px;margin-top:20px;}
+.edit-save{flex:1;background:var(--laranja);color:var(--branco);border:none;border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.edit-cancel{flex:1;background:transparent;color:var(--cinza);border:1.5px solid var(--borda);border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* CONFIRMAR EXCLUSÃO */
+.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:700;align-items:center;justify-content:center;}
+.confirm-overlay.open{display:flex;}
+.confirm-box{background:var(--branco);border-radius:16px;padding:32px;width:380px;text-align:center;}
+.confirm-icon{font-size:44px;margin-bottom:12px;}
+.confirm-title{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px;}
+.confirm-sub{font-size:13px;color:var(--cinza);margin-bottom:24px;line-height:1.6;}
+.confirm-actions{display:flex;gap:10px;}
+.confirm-del{flex:1;background:#EF4444;color:var(--branco);border:none;border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.confirm-cancel{flex:1;background:transparent;color:var(--cinza);border:1.5px solid var(--borda);border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">SEMPRE<span>VIDAS</span></div>
+    <div class="login-sub">Painel interno — acesso restrito</div>
+    <label class="login-label">Senha de acesso</label>
+    <input class="login-input" type="password" id="login-senha" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()">
+    <button class="login-btn" onclick="fazerLogin()">🔐 Entrar</button>
+    <div class="login-erro" id="login-erro">Senha incorreta. Tente novamente.</div>
+  </div>
+</div>
+
+<!-- MODAL PERFIL COMPLETO -->
+<div class="modal-overlay" id="modal-perfil">
+  <div class="modal">
+    <div class="modal-header">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="modal-avatar" id="p-avatar"></div>
+        <div>
+          <div class="modal-nome" id="p-nome"></div>
+          <div class="modal-sub" id="p-sub"></div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="fecharPerfil()">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- DISTÂNCIA -->
+      <div class="dist-card" id="p-dist-card">
+        <div>
+          <div class="dist-card-km" id="p-dist-km">—</div>
+          <div class="dist-card-label">do posto selecionado</div>
+          <div class="dist-card-posto" id="p-dist-posto"></div>
+        </div>
+        <div style="font-size:48px;">📍</div>
+      </div>
+
+      <!-- ABAS -->
+      <div class="abas">
+        <div class="aba active" onclick="trocarAba(0,this)">👤 Dados pessoais</div>
+        <div class="aba" onclick="trocarAba(1,this)">🧯 Técnico</div>
+        <div class="aba" onclick="trocarAba(2,this)">🧠 Comportamental</div>
+      </div>
+
+      <!-- ABA 1: DADOS -->
+      <div class="aba-content active" id="aba-0">
+        <div class="perfil-section">
+          <div class="perfil-section-title">Informações pessoais</div>
+          <div class="perfil-grid">
+            <div class="perfil-field"><label>Telefone</label><p id="p-tel"></p></div>
+            <div class="perfil-field"><label>CPF</label><p id="p-cpf"></p></div>
+            <div class="perfil-field"><label>Data de nascimento</label><p id="p-nasc"></p></div>
+            <div class="perfil-field"><label>CEP residencial</label><p id="p-cep"></p></div>
+            <div class="perfil-field full"><label>E-mail</label><p id="p-email"></p></div>
+          </div>
+        </div>
+        <div class="perfil-section">
+          <div class="perfil-section-title">Situação profissional</div>
+          <div class="perfil-grid">
+            <div class="perfil-field"><label>Trabalhando atualmente</label><p id="p-trab"></p></div>
+            <div class="perfil-field"><label>Experiência como bombeiro</label><p id="p-exp"></p></div>
+            <div class="perfil-field full"><label>Última reciclagem</label><p id="p-recic"></p></div>
+          </div>
+        </div>
+        <div class="perfil-section">
+          <div class="perfil-section-title">Certificações</div>
+          <div id="p-certs"></div>
+          <div style="margin-top:10px;">
+            <div class="perfil-field"><label>Cursos NR</label><p id="p-nr" style="font-weight:400;font-size:13px;line-height:1.6;"></p></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <button class="btn-acao btn-editar" style="padding:8px 16px;font-size:12px;" onclick="abrirEditar(candidatoAtual.id)">✏️ Editar dados</button>
+          <button class="btn-acao btn-excluir" style="padding:8px 16px;font-size:12px;" onclick="abrirExcluir(candidatoAtual.id)">🗑️ Excluir candidato</button>
+        </div>
+      </div>
+
+      <!-- ABA 2: TÉCNICO -->
+      <div class="aba-content" id="aba-1">
+        <div class="perfil-section">
+          <div class="perfil-section-title">Perguntas técnicas</div>
+          <div id="p-tecnicos"></div>
+        </div>
+      </div>
+
+      <!-- ABA 3: COMPORTAMENTAL -->
+      <div class="aba-content" id="aba-2">
+        <div class="perfil-section">
+          <div class="perfil-section-title">Perguntas comportamentais</div>
+          <div id="p-comportamentais"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR -->
+<div class="modal-edit-overlay" id="modal-editar">
+  <div class="modal-edit">
+    <div class="modal-edit-header">
+      <div class="modal-edit-title">✏️ Editar candidato</div>
+      <button class="modal-close" onclick="fecharEditar()">×</button>
+    </div>
+    <div class="edit-grid">
+      <div class="edit-field full"><label>Nome completo</label><input type="text" id="edit-nome"></div>
+      <div class="edit-field"><label>Telefone</label><input type="text" id="edit-tel"></div>
+      <div class="edit-field"><label>CEP</label><input type="text" id="edit-cep"></div>
+      <div class="edit-field"><label>E-mail</label><input type="text" id="edit-email"></div>
+      <div class="edit-field"><label>Experiência</label>
+        <select id="edit-exp"><option>Sim</option><option>Não</option><option>Apenas Evento</option><option>Recém formado</option></select>
+      </div>
+      <div class="edit-field"><label>APH</label>
+        <select id="edit-aph"><option value="true">Sim</option><option value="false">Não</option></select>
+      </div>
+      <div class="edit-field"><label>DEA</label>
+        <select id="edit-dea"><option value="true">Sim</option><option value="false">Não</option></select>
+      </div>
+    </div>
+    <div class="edit-actions">
+      <button class="edit-cancel" onclick="fecharEditar()">Cancelar</button>
+      <button class="edit-save" onclick="salvarEdicao()">💾 Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRMAR EXCLUSÃO -->
+<div class="confirm-overlay" id="confirm-excluir">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Excluir candidato?</div>
+    <div class="confirm-sub" id="confirm-texto"></div>
+    <div class="confirm-actions">
+      <button class="confirm-cancel" onclick="fecharConfirm()">Cancelar</button>
+      <button class="confirm-del" onclick="confirmarExclusao()">Sim, excluir</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">SEMPRE<span>VIDAS</span></div>
+  <div class="header-right">
+    <div class="header-tag">🎯 Painel Interno</div>
+    <button class="logout-btn" onclick="sair()">Sair</button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <h2>Selecionar posto com vaga</h2>
+    <p>Escolha o posto e veja quais candidatos moram mais perto</p>
+    <div class="field">
+      <label>Posto com vaga disponível</label>
+      <select id="select-posto" onchange="selecionarPosto()"><option value="">— Selecione um posto —</option></select>
+    </div>
+    <div class="field">
+      <label>Distância máxima (km)</label>
+      <select id="distancia-max">
+        <option value="5">Até 5 km</option>
+        <option value="10" selected>Até 10 km</option>
+        <option value="20">Até 20 km</option>
+        <option value="50">Até 50 km</option>
+        <option value="999">Qualquer distância</option>
+      </select>
+    </div>
+    <button class="btn" onclick="buscarCandidatos()">🔍 Buscar candidatos próximos</button>
+    <button class="btn-sec" onclick="limpar()">Limpar seleção</button>
+    <div class="divider"></div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:10px;color:var(--cinza);">Seus postos</div>
+    <div id="lista-postos"></div>
+  </div>
+
+  <div class="main">
+    <div class="posto-info" id="posto-info">
+      <div style="font-size:26px;">📍</div>
+      <div>
+        <div class="posto-info-nome" id="posto-info-nome"></div>
+        <div class="posto-info-end" id="posto-info-end"></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" id="stat-total">0</div><div class="stat-label">Candidatos na base</div></div>
+      <div class="stat"><div class="stat-val" id="stat-proximos" style="color:var(--verde)">0</div><div class="stat-label">Próximos ao posto</div></div>
+      <div class="stat"><div class="stat-val" id="stat-dist">—</div><div class="stat-label">Mais próximo (km)</div></div>
+    </div>
+    <div class="table-wrap">
+      <div class="table-top">
+        <div class="table-title" id="table-title">Candidatos ordenados por proximidade</div>
+        <div style="font-size:12px;color:var(--cinza)" id="table-sub">Selecione um posto para começar</div>
+      </div>
+      <div id="table-body">
+        <div class="empty">
+          <div class="empty-icon">🗺️</div>
+          <div class="empty-title">Selecione um posto</div>
+          <div class="empty-sub">Escolha o posto com vaga e clique em "Buscar candidatos próximos"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SENHA='9090';
+const postos=[
+  {nome:"ARQUIVO",end:"R. Voluntários da Pátria, 596 - Santana",cep:"02010-000",lat:-23.5070,lng:-46.6276},
+  {nome:"BSP BARRA FUNDA",end:"R. do Bosque, 1260 - Barra Funda",cep:"01136-001",lat:-23.5253,lng:-46.6612},
+  {nome:"BSP HABITAT",end:"Av. Angélica, 2529 - Bela Vista",cep:"01227-200",lat:-23.5502,lng:-46.6569},
+  {nome:"CENTRAL TÉCNICA",end:"Rua Pascoal Ranieri, 75 - Canindé",cep:"03034-060",lat:-23.5214,lng:-46.6192},
+  {nome:"CEU ANHANGUERA",end:"R. Pedro José de Lima, 1020 - Anhanguera",cep:"05267-174",lat:-23.4460,lng:-46.7750},
+  {nome:"CEU ATLÂNTICO",end:"R. Cel. José Venâncio Dias, 840 - Vila Jaraguá",cep:"05160-030",lat:-23.4754,lng:-46.7506},
+  {nome:"CEU BRISTOL",end:"R. Prof. Artur Primavesi - Parque Bristol",cep:"04177-070",lat:-23.6304,lng:-46.5658},
+  {nome:"CEU FREGUESIA DO Ó",end:"R. Crespo de Carvalho, 71 - Freguesia do Ó",cep:"02832-240",lat:-23.4924,lng:-46.6847},
+  {nome:"CEU HELIÓPOLIS",end:"Estr. das Lágrimas, 2385 - São João Climaco",cep:"04244-000",lat:-23.6289,lng:-46.5911},
+  {nome:"CEU JAÇANÃ",end:"R. Francisca Espósito Tonetti, 105 - Jardim Guapira",cep:"02276-010",lat:-23.4590,lng:-46.5990},
+  {nome:"CEU JAGUARÉ",end:"Av. Kenkiti Simomoto, 80 - Jaguaré",cep:"05347-010",lat:-23.5431,lng:-46.7439},
+  {nome:"CEU MENINOS",end:"R. Barbinos, 111 - São João Climaco",cep:"04240-110",lat:-23.6270,lng:-46.5964},
+  {nome:"CEU PAULISTANO",end:"R. Aparecida do Taboado, S/N - Zona Norte",cep:"02814-000",lat:-23.4802,lng:-46.6691},
+  {nome:"CEU PAZ",end:"Rua Daniel Cerri, 1549 - Jardim Paraná",cep:"02876-170",lat:-23.4737,lng:-46.6922},
+  {nome:"CEU PÊRA-MARMELO",end:"Rua Pêra-Marmelo, 226 - Jardim Santa Lucrecia",cep:"05185-420",lat:-23.5109,lng:-46.7498},
+  {nome:"CEU PERUS",end:"R. Bernardo José de Lorena, S/N - Vila Fanton",cep:"05203-200",lat:-23.4383,lng:-46.7594},
+  {nome:"CEU PINHEIRINHO",end:"Rua Camillo Zanotti - Jaraguá",cep:"02998-080",lat:-23.4560,lng:-46.7340},
+  {nome:"CEU PQ NOVO MUNDO",end:"Av. Ernesto Augusto Lopes, 100 - Parque Vila Maria",cep:"02169-030",lat:-23.4947,lng:-46.5820},
+  {nome:"CEU TAIPAS",end:"R. João Amado Coutinho, 240 - Elisio Teixeira Leite",cep:"02815-000",lat:-23.4771,lng:-46.6837},
+  {nome:"CEU TREMEMBÉ",end:"R. Adauto Bezerra Delgado, 94 - Parque Casa de Pedra",cep:"02320-110",lat:-23.4657,lng:-46.6389},
+  {nome:"CEU VILA ALPINA",end:"Rua João Pedro Lecór, 144 - Vila Alpina",cep:"03227-190",lat:-23.5770,lng:-46.5392},
+  {nome:"CULT",end:"Rua Três Rios, 343 - Bom Retiro",cep:"01123-000",lat:-23.5241,lng:-46.6394},
+  {nome:"HSPM",end:"R. Castro Alves, 60 - Aclimação",cep:"01532-000",lat:-23.5601,lng:-46.6319},
+  {nome:"IAMSPE",end:"Rua Pedro de Toledo, 1800 - Vila Clementino",cep:"04039-000",lat:-23.5952,lng:-46.6429},
+  {nome:"MUSEU DAS FAVELAS",end:"Largo Páteo do Colégio, 148 - Centro Histórico",cep:"01016-040",lat:-23.5471,lng:-46.6338},
+  {nome:"POLÍCIA DHPP",end:"R. Brg. Tobias, 527 - Luz",cep:"01032-001",lat:-23.5329,lng:-46.6366},
+  {nome:"SALA SÃO PAULO",end:"Praça Júlio Prestes, 16 - Campos Elíseos",cep:"01218-020",lat:-23.5345,lng:-46.6441},
+  {nome:"THEATRO MUNICIPAL",end:"Praça Ramos de Azevedo, s/n - República",cep:"01037-010",lat:-23.5455,lng:-46.6388}
+];
+
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxQpo4SBrqqv01pEfs_0tFjbSBJwiI6MRkrfdGW4JpkGnKiGyCsDXKLM8xgZhOpWR8_NA/exec';
+let candidatos = [];
+
+async function carregarCandidatos() {
+  try {
+    document.getElementById('table-body').innerHTML = '<div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">Carregando candidatos...</div></div>';
+    const resp = await fetch(SHEETS_URL);
+    const data = await resp.json();
+    if (data.status === 'ok' && data.candidatos) {
+      candidatos = data.candidatos.map((c, i) => ({
+        id: i + 1,
+        nome: c['Nome'] || c['nome'] || '',
+        email: c['Email'] || c['email'] || '',
+        tel: c['Telefone'] || c['telefone'] || '',
+        cpf: c['CPF'] || c['cpf'] || '',
+        nasc: c['Nascimento'] || c['nascimento'] || '',
+        cep: c['CEP'] || c['cep'] || '',
+        trab: c['Trabalhando'] || c['trabalhando'] || '',
+        exp: c['Experiência'] || c['experiencia'] || '',
+        recic: c['Reciclagem'] || c['reciclagem'] || '',
+        aph: (c['APH'] || c['aph'] || '').toString().toLowerCase() === 'sim' || (c['APH'] || c['aph'] || '').toString() === 'true',
+        dea: (c['DEA'] || c['dea'] || '').toString().toLowerCase() === 'sim' || (c['DEA'] || c['dea'] || '').toString() === 'true',
+        nr: c['Cursos NR'] || c['cursos_nr'] || '',
+        lat: -23.5505,
+        lng: -46.6333,
+        tecnicos: [
+          c['Q1 - Motivo']||'', c['Q2 - Civil x Militar']||'', c['Q3 - Brigada']||'',
+          c['Q4 - Extintores']||'', c['Q5 - Inspeção Extintores']||'', c['Q6 - Inspeção Hidrantes']||'',
+          c['Q7 - Hidrante Avariado']||'', c['Q8 - Extintor Vencido']||'', c['Q9 - Abrigo Hidrante']||'',
+          c['Q10 - Linha Mangueira']||'', c['Q11 - Emergência Trauma']||'', c['Q12 - Emergência Clínica']||'',
+          c['Q13 - Curto Circuito']||'', c['Q14 - Vítima Fumaça']||'', c['Q15 - Fratura']||'',
+          c['Q16 - Evacuação']||'', c['Q17 - Queimaduras']||'', c['Q18 - DEA']||'', c['Q19 - Elevador']||''
+        ],
+        comportamentais: [
+          c['Q20 - Equipe']||'', c['Q21 - Técnico x Emocional']||'', c['Q22 - Pânico']||'',
+          c['Q23 - Desafio']||'', c['Q24 - Atualização']||'', c['Q25 - Divergência']||'',
+          c['Q26 - Responsabilidade']||'', c['Q27 - Contribuição']||''
+        ]
+      }));
+      // Converter CEP em coordenadas reais via API
+      for (let c of candidatos) {
+        try {
+          const cep = (c.cep || '').replace(/\D/g,'');
+          if (cep.length === 8) {
+            const viacep = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+            const addr = await viacep.json();
+            if (!addr.erro) {
+              const logradouro = encodeURIComponent((addr.logradouro || '') + ', ' + addr.localidade + ', ' + addr.uf + ', Brasil');
+              const geo = await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + logradouro + '&limit=1', {headers: {'User-Agent': 'SempreVidas/1.0'}});
+              const geoData = await geo.json();
+              if (geoData && geoData[0]) {
+                c.lat = parseFloat(geoData[0].lat);
+                c.lng = parseFloat(geoData[0].lon);
+                c.endereco = addr.logradouro + ', ' + addr.bairro + ' - ' + addr.localidade;
+              }
+            }
+          }
+        } catch(e) {
+          console.log('Erro no CEP:', c.cep);
+        }
+      }
+    }
+    document.getElementById('stat-total').textContent = candidatos.length;
+    document.getElementById('table-body').innerHTML = '<div class="empty"><div class="empty-icon">🗺️</div><div class="empty-title">Selecione um posto</div><div class="empty-sub">Escolha o posto com vaga e clique em "Buscar candidatos próximos"</div></div>';
+  } catch(err) {
+    console.error('Erro ao carregar candidatos:', err);
+    document.getElementById('table-body').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Erro ao carregar dados</div><div class="empty-sub">Verifique a conexão com o Google Sheets</div></div>';
+  }
+}
+
+let postoSelecionado=null,candidatoAtual=null,editandoId=null,excluindoId=null;
+
+function fazerLogin(){
+  if(document.getElementById('login-senha').value===SENHA){
+    document.getElementById('login-overlay').style.display='none';
+    carregarCandidatos();
+  } else {
+    document.getElementById('login-erro').style.display='block';
+    document.getElementById('login-senha').value='';
+  }
+}
+function sair(){
+  document.getElementById('login-overlay').style.display='flex';
+  document.getElementById('login-senha').value='';
+  document.getElementById('login-erro').style.display='none';
+}
+
+function init(){
+  const sel=document.getElementById('select-posto');
+  const lista=document.getElementById('lista-postos');
+  postos.forEach((p,i)=>{
+    const o=document.createElement('option');o.value=i;o.textContent=p.nome;sel.appendChild(o);
+    const d=document.createElement('div');d.className='posto-item';d.id='posto-'+i;
+    d.innerHTML=`<div class="posto-item-nome">${p.nome}</div><div class="posto-item-cep">CEP: ${p.cep}</div>`;
+    d.onclick=()=>{sel.value=i;selecionarPosto();buscarCandidatos();};
+    lista.appendChild(d);
+  });
+  // candidatos carregados via Google Sheets
+}
+
+function selecionarPosto(){
+  const idx=document.getElementById('select-posto').value;
+  if(idx===''){postoSelecionado=null;return;}
+  postoSelecionado=postos[idx];
+  document.querySelectorAll('.posto-item').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('posto-'+idx).classList.add('sel');
+  document.getElementById('posto-'+idx).scrollIntoView({behavior:'smooth',block:'nearest'});
+  document.getElementById('posto-info').classList.add('show');
+  document.getElementById('posto-info-nome').textContent='📍 '+postoSelecionado.nome;
+  document.getElementById('posto-info-end').textContent=postoSelecionado.end+' — CEP: '+postoSelecionado.cep;
+}
+
+function distKm(a,b,c,d){
+  const R=6371,dL=(c-a)*Math.PI/180,dG=(d-b)*Math.PI/180;
+  const x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dG/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+}
+
+function buscarCandidatos(){
+  if(!postoSelecionado){alert('Selecione um posto primeiro!');return;}
+  const dm=parseFloat(document.getElementById('distancia-max').value);
+  const lista=candidatos.map(c=>({...c,dist:distKm(postoSelecionado.lat,postoSelecionado.lng,c.lat,c.lng)})).sort((a,b)=>a.dist-b.dist);
+  const prox=lista.filter(c=>c.dist<=dm);
+  document.getElementById('stat-total').textContent=candidatos.length;
+  document.getElementById('stat-proximos').textContent=prox.length;
+  document.getElementById('stat-dist').textContent=lista[0]?lista[0].dist.toFixed(1)+' km':'—';
+  document.getElementById('table-title').textContent='Candidatos mais próximos — '+postoSelecionado.nome;
+  document.getElementById('table-sub').textContent=prox.length+' dentro de '+dm+' km · '+lista.length+' total';
+
+  let html=`<table><thead><tr><th>#</th><th>Candidato</th><th>CEP</th><th>Distância</th><th>Experiência</th><th>Certificações</th><th>Ações</th></tr></thead><tbody>`;
+  lista.forEach((c,i)=>{
+    const rk=i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+    const rl=i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1);
+    const dc=c.dist<=5?'dist-perto':c.dist<=15?'dist-medio':'dist-longe';
+    const op=c.dist<=dm?'':'opacity:0.4;';
+    html+=`<tr class="clickable" style="${op}">
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})"><div class="rank ${rk}">${rl}</div></td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})"><strong>${c.nome}</strong><br><span style="font-size:11px;color:var(--cinza)">${c.email||''}</span></td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})" style="font-size:12px;color:var(--cinza)">${c.cep}</td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})"><span class="dist-badge ${dc}">${c.dist.toFixed(1)} km</span></td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})" style="font-size:12px">${c.exp}</td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})" style="font-size:12px">${[c.aph?'APH':'',c.dea?'DEA':''].filter(Boolean).join(', ')||'—'}</td>
+      <td>
+        <button class="btn-acao btn-ver" onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})">👁 Ver perfil</button>
+        <button class="btn-acao btn-editar" onclick="abrirEditar(${c.id})">✏️</button>
+        <button class="btn-acao btn-excluir" onclick="abrirExcluir(${c.id})">🗑️</button>
+      </td>
+    </tr>`;
+  });
+  html+='</tbody></table>';
+  document.getElementById('table-body').innerHTML=html;
+}
+
+const pergTec=["Por que escolheu a profissão?","Diferença entre Civil e Militar","O que é Brigada de Incêndio?","Tipos de extintores e utilizações","Inspeção preventiva em extintores","Inspeção preventiva em hidrantes","Conduta: hidrante com avaria","Conduta: extintor vencido/avariado","Itens do abrigo de hidrante","Como montar linha de mangueira","Emergência externa para traumas (número)","Emergência externa para casos clínicos (número)","Conduta em curto-circuito","Salvamento de vítima em ambiente com fumaça","Imobilização de membro fraturado","Evacuação de pessoas em pânico","Primeiro atendimento a queimaduras","Para que serve o DEA?","Vítima presa em elevador"];
+const pergComp=["Atuação em equipe durante emergência","Técnico vs calma emocional","Como reage a pessoas em pânico","Maior desafio na carreira","Como se mantém atualizado","Divergência técnica com colega","O que significa ser responsável por vidas","Contribuição para a equipe"];
+
+function abrirPerfil(id, dist){
+  const c=candidatos.find(x=>x.id===id);
+  if(!c)return;
+  candidatoAtual=c;
+  const iniciais=c.nome.split(' ').slice(0,2).map(p=>p[0]).join('').toUpperCase();
+  document.getElementById('p-avatar').textContent=iniciais;
+  document.getElementById('p-nome').textContent=c.nome;
+  document.getElementById('p-sub').textContent=c.email||c.tel;
+  document.getElementById('p-tel').textContent=c.tel;
+  document.getElementById('p-cpf').textContent=c.cpf||'—';
+  document.getElementById('p-nasc').textContent=c.nasc||'—';
+  document.getElementById('p-cep').textContent=c.cep;
+  document.getElementById('p-email').textContent=c.email||'—';
+  document.getElementById('p-trab').textContent=c.trab||'—';
+  document.getElementById('p-exp').textContent=c.exp||'—';
+  document.getElementById('p-recic').textContent=c.recic||'—';
+  document.getElementById('p-nr').textContent=c.nr||'—';
+
+  const certs=document.getElementById('p-certs');
+  certs.innerHTML=`<span class="cert-badge ${c.aph?'':'no'}">${c.aph?'✓':'✗'} APH</span><span class="cert-badge ${c.dea?'':'no'}">${c.dea?'✓':'✗'} DEA</span>`;
+
+  if(postoSelecionado && dist){
+    const dc=dist<=5?'dist-perto':dist<=15?'dist-medio':'dist-longe';
+    document.getElementById('p-dist-km').textContent=parseFloat(dist).toFixed(1)+' km';
+    document.getElementById('p-dist-km').className='dist-card-km';
+    document.getElementById('p-dist-posto').textContent='do '+postoSelecionado.nome;
+  } else {
+    document.getElementById('p-dist-km').textContent='—';
+    document.getElementById('p-dist-posto').textContent='Nenhum posto selecionado';
+  }
+
+  const tec=document.getElementById('p-tecnicos');
+  tec.innerHTML=(c.tecnicos||[]).map((r,i)=>`<div class="resposta-item"><div class="resposta-pergunta">${pergTec[i]||'Pergunta '+(i+1)}</div><div class="resposta-texto">${r}</div></div>`).join('');
+
+  const comp=document.getElementById('p-comportamentais');
+  comp.innerHTML=(c.comportamentais||[]).map((r,i)=>`<div class="resposta-item"><div class="resposta-pergunta">${pergComp[i]||'Pergunta '+(i+1)}</div><div class="resposta-texto">${r}</div></div>`).join('');
+
+  trocarAba(0, document.querySelector('.aba'));
+  document.getElementById('modal-perfil').classList.add('open');
+}
+
+function fecharPerfil(){document.getElementById('modal-perfil').classList.remove('open');}
+
+function trocarAba(idx, el){
+  document.querySelectorAll('.aba').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('.aba-content').forEach(c=>c.classList.remove('active'));
+  if(el) el.classList.add('active');
+  else document.querySelectorAll('.aba')[idx].classList.add('active');
+  document.getElementById('aba-'+idx).classList.add('active');
+}
+
+function abrirEditar(id){
+  const c=candidatos.find(x=>x.id===id);if(!c)return;
+  editandoId=id;
+  document.getElementById('edit-nome').value=c.nome;
+  document.getElementById('edit-tel').value=c.tel;
+  document.getElementById('edit-cep').value=c.cep;
+  document.getElementById('edit-email').value=c.email||'';
+  document.getElementById('edit-exp').value=c.exp;
+  document.getElementById('edit-aph').value=String(c.aph);
+  document.getElementById('edit-dea').value=String(c.dea);
+  document.getElementById('modal-editar').classList.add('open');
+}
+function fecharEditar(){document.getElementById('modal-editar').classList.remove('open');editandoId=null;}
+function salvarEdicao(){
+  const idx=candidatos.findIndex(x=>x.id===editandoId);if(idx===-1)return;
+  candidatos[idx].nome=document.getElementById('edit-nome').value;
+  candidatos[idx].tel=document.getElementById('edit-tel').value;
+  candidatos[idx].cep=document.getElementById('edit-cep').value;
+  candidatos[idx].email=document.getElementById('edit-email').value;
+  candidatos[idx].exp=document.getElementById('edit-exp').value;
+  candidatos[idx].aph=document.getElementById('edit-aph').value==='true';
+  candidatos[idx].dea=document.getElementById('edit-dea').value==='true';
+  fecharEditar();
+  if(postoSelecionado)buscarCandidatos();
+}
+
+function abrirExcluir(id){
+  excluindoId=id;
+  const c=candidatos.find(x=>x.id===id);
+  document.getElementById('confirm-texto').textContent=`Tem certeza que deseja excluir "${c.nome}"? Esta ação não pode ser desfeita.`;
+  document.getElementById('confirm-excluir').classList.add('open');
+}
+function fecharConfirm(){document.getElementById('confirm-excluir').classList.remove('open');excluindoId=null;}
+function confirmarExclusao(){
+  candidatos=candidatos.filter(x=>x.id!==excluindoId);
+  fecharConfirm();fecharPerfil();
+  document.getElementById('stat-total').textContent=candidatos.length;
+  if(postoSelecionado)buscarCandidatos();
+}
+
+function limpar(){
+  postoSelecionado=null;
+  document.getElementById('select-posto').value='';
+  document.querySelectorAll('.posto-item').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('posto-info').classList.remove('show');
+  document.getElementById('stat-proximos').textContent='0';
+  document.getElementById('stat-dist').textContent='—';
+  document.getElementById('table-title').textContent='Candidatos ordenados por proximidade';
+  document.getElementById('table-sub').textContent='Selecione um posto para começar';
+  document.getElementById('table-body').innerHTML='<div class="empty"><div class="empty-icon">🗺️</div><div class="empty-title">Selecione um posto</div><div class="empty-sub">Escolha o posto com vaga e clique em "Buscar candidatos próximos"</div></div>';
+}
+
+init();
+</script>
+</body>
+</html>
