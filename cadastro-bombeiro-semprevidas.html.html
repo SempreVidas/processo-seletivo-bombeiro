@@ -813,12 +813,6 @@
       </div>
     </div>
 
-    <div class="btn-group" style="flex-direction:column;">
-      <button class="btn btn-submit" onclick="enviar()">
-        ✅ Enviar Candidatura
-      </button>
-      <button class="btn btn-secondary" style="align-self:flex-start;" onclick="prevStep(5)">‹ Voltar</button>
-    </div>
     <!-- LGPD -->
 <div style="background:#F8FAFF;border:1.5px solid #DBEAFE;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
   <div style="font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;color:#1D4ED8;margin-bottom:10px;">🔒 Privacidade e Proteção de Dados</div>
@@ -827,13 +821,20 @@
     <p style="margin-bottom:8px;">Suas informações serão utilizadas apenas para avaliar sua candidatura e não serão compartilhadas com terceiros sem o seu consentimento.</p>
     <p>Você pode solicitar a exclusão dos seus dados a qualquer momento pelo e-mail: <a href="mailto:contato@semprevidas.com.br" style="color:#1D4ED8;font-weight:600;">contato@semprevidas.com.br</a></p>
   </div>
-</div><div style="margin-bottom:20px;">
+</div>
+<div style="margin-bottom:20px;">
   <label style="display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:#fff;border:2px solid #E8E8E8;border-radius:12px;cursor:pointer;" id="lgpd-label" onclick="toggleLGPD()">
     <input type="checkbox" id="lgpd-check" style="display:none;">
     <div id="lgpd-custom" style="width:22px;height:22px;border:2px solid #E8E8E8;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;"></div>
     <div style="font-size:13px;color:#6B6B6B;line-height:1.6;">Li e concordo que meus dados sejam utilizados pela SempreVidas para fins de processo seletivo.</div>
   </label>
-</div>
+</div><div class="btn-group" style="flex-direction:column;">
+      <button class="btn btn-submit" onclick="enviar()">
+        ✅ Enviar Candidatura
+      </button>
+      <button class="btn btn-secondary" style="align-self:flex-start;" onclick="prevStep(5)">‹ Voltar</button>
+    </div>
+   
   </div>
 
   <!-- SUCESSO -->
