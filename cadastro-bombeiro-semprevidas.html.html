@@ -525,6 +525,16 @@ function enviar() {
   const lgpd = document.getElementById('lgpd-check').checked;
   if (!lgpd) { alert('Por favor, aceite os termos de privacidade antes de enviar.'); return; }
 
+  // Valida TODAS as etapas antes de enviar
+  for (let i = 1; i <= 4; i++) {
+    if (!validarEtapa(i)) {
+      goStep(i);
+      return;
+    }
+  }
+
+  if (!curriculoBase64) { alert('Por favor, anexe seu currículo antes de enviar.'); return; }
+
   const btn = document.getElementById('btn-enviar');
   btn.disabled = true;
   btn.textContent = '⏳ Enviando...';
