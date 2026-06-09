@@ -17,507 +17,99 @@
     --borda: #E8E8E8;
     --sombra: 0 4px 24px rgba(240,124,31,0.10);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Open Sans', sans-serif;
-    background: #FDF6EF;
-    color: var(--preto);
-    min-height: 100vh;
-  }
-
-  /* HERO HEADER */
-  .hero {
-    background: var(--preto);
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 300px; height: 300px;
-    background: var(--laranja);
-    border-radius: 50%;
-    opacity: 0.08;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: 10%;
-    width: 200px; height: 200px;
-    background: var(--laranja);
-    border-radius: 50%;
-    opacity: 0.05;
-  }
-
-  .hero-inner {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 48px 24px 40px;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .logo-area {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-  }
-
-  .logo-icon {
-    width: 56px;
-    height: 56px;
-  }
-
-  .logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    font-weight: 700;
-    color: var(--branco);
-    letter-spacing: 1px;
-    line-height: 1;
-  }
-
-  .logo-text span {
-    color: var(--laranja);
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: var(--laranja);
-    color: var(--branco);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--branco);
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
+  body { font-family: 'Open Sans', sans-serif; background: #FDF6EF; color: var(--preto); min-height: 100vh; }
+  .hero { background: var(--preto); padding: 0; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: var(--laranja); border-radius: 50%; opacity: 0.08; }
+  .hero::after { content: ''; position: absolute; bottom: -40px; left: 10%; width: 200px; height: 200px; background: var(--laranja); border-radius: 50%; opacity: 0.05; }
+  .hero-inner { max-width: 780px; margin: 0 auto; padding: 48px 24px 40px; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .logo-area { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  .logo-icon { width: 56px; height: 56px; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--branco); letter-spacing: 1px; line-height: 1; }
+  .logo-text span { color: var(--laranja); }
+  .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; color: var(--branco); line-height: 1.2; margin-bottom: 12px; }
   .hero h1 span { color: var(--laranja); }
-
-  .hero p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    max-width: 500px;
-  }
-
-  .hero-divider {
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--laranja), var(--laranja-escuro));
-  }
-
-  /* PROGRESSO */
-  .progress-bar-wrap {
-    background: var(--branco);
-    border-bottom: 1px solid var(--borda);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  }
-
-  .progress-inner {
-    max-width: 780px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 0;
-    padding: 16px 0;
-  }
-
-  .step-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    cursor: pointer;
-  }
-
-  .step-circle {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--cinza-claro);
-    border: 2px solid var(--borda);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--cinza);
-    flex-shrink: 0;
-    transition: all 0.3s;
-  }
-
-  .step-item.active .step-circle {
-    background: var(--laranja);
-    border-color: var(--laranja);
-    color: var(--branco);
-  }
-
-  .step-item.done .step-circle {
-    background: #22C55E;
-    border-color: #22C55E;
-    color: var(--branco);
-  }
-
-  .step-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--cinza);
-    white-space: nowrap;
-  }
-
+  .hero p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 500px; }
+  .hero-divider { width: 100%; height: 4px; background: linear-gradient(90deg, var(--laranja), var(--laranja-escuro)); }
+  .progress-bar-wrap { background: var(--branco); border-bottom: 1px solid var(--borda); padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .progress-inner { max-width: 780px; margin: 0 auto; display: flex; align-items: center; gap: 0; padding: 16px 0; }
+  .step-item { display: flex; align-items: center; gap: 8px; flex: 1; cursor: pointer; }
+  .step-circle { width: 28px; height: 28px; border-radius: 50%; background: var(--cinza-claro); border: 2px solid var(--borda); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--cinza); flex-shrink: 0; transition: all 0.3s; }
+  .step-item.active .step-circle { background: var(--laranja); border-color: var(--laranja); color: var(--branco); }
+  .step-item.done .step-circle { background: #22C55E; border-color: #22C55E; color: var(--branco); }
+  .step-label { font-size: 11px; font-weight: 600; color: var(--cinza); white-space: nowrap; }
   .step-item.active .step-label { color: var(--laranja); }
   .step-item.done .step-label { color: #22C55E; }
-
-  .step-line {
-    flex: 1;
-    height: 2px;
-    background: var(--borda);
-    margin: 0 8px;
-    max-width: 40px;
-  }
-
-  /* CONTAINER PRINCIPAL */
-  .container {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 32px 24px 60px;
-  }
-
-  /* SEÇÕES */
-  .section {
-    display: none;
-    animation: fadeIn 0.4s ease;
-  }
-
+  .step-line { flex: 1; height: 2px; background: var(--borda); margin: 0 8px; max-width: 40px; }
+  .container { max-width: 780px; margin: 0 auto; padding: 32px 24px 60px; }
+  .section { display: none; animation: fadeIn 0.4s ease; }
   .section.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
-  }
-
-  .section-icon {
-    width: 44px; height: 44px;
-    background: var(--laranja-claro);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
-  .section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--preto);
-  }
-
-  .section-subtitle {
-    font-size: 13px;
-    color: var(--cinza);
-    margin-top: 2px;
-  }
-
-  /* CARD */
-  .card {
-    background: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 16px;
-    box-shadow: var(--sombra);
-  }
-
-  /* GRID */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  .section-icon { width: 44px; height: 44px; background: var(--laranja-claro); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .section-title { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: var(--preto); }
+  .section-subtitle { font-size: 13px; color: var(--cinza); margin-top: 2px; }
+  .card { background: var(--branco); border: 1px solid var(--borda); border-radius: 16px; padding: 28px; margin-bottom: 16px; box-shadow: var(--sombra); }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .grid-1 { display: grid; grid-template-columns: 1fr; gap: 16px; }
-
   @media (max-width: 560px) { .grid-2 { grid-template-columns: 1fr; } }
-
-  /* CAMPOS */
   .field { display: flex; flex-direction: column; gap: 6px; }
-
-  .field label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--preto);
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-
+  .field label { font-size: 12px; font-weight: 600; color: var(--preto); letter-spacing: 0.3px; text-transform: uppercase; }
   .field label .req { color: var(--laranja); margin-left: 2px; }
-
-  .field input,
-  .field select,
-  .field textarea {
-    border: 1.5px solid var(--borda);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 14px;
-    font-family: 'Open Sans', sans-serif;
-    color: var(--preto);
-    background: var(--branco);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    width: 100%;
-  }
-
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus {
-    border-color: var(--laranja);
-    box-shadow: 0 0 0 3px rgba(240,124,31,0.12);
-  }
-
-  .field textarea {
-    resize: vertical;
-    min-height: 100px;
-    line-height: 1.6;
-  }
-
-  /* RADIO/CHECKBOX CUSTOMIZADO */
-  .radio-group, .check-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 4px;
-  }
-
-  .radio-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border: 1.5px solid var(--borda);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--cinza);
-    background: var(--branco);
-    user-select: none;
-  }
-
-  .radio-btn:hover {
-    border-color: var(--laranja);
-    color: var(--laranja);
-    background: var(--laranja-claro);
-  }
-
+  .field input, .field select, .field textarea { border: 1.5px solid var(--borda); border-radius: 10px; padding: 12px 14px; font-size: 14px; font-family: 'Open Sans', sans-serif; color: var(--preto); background: var(--branco); transition: border-color 0.2s, box-shadow 0.2s; outline: none; width: 100%; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--laranja); box-shadow: 0 0 0 3px rgba(240,124,31,0.12); }
+  .field textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .radio-btn { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1.5px solid var(--borda); border-radius: 10px; cursor: pointer; transition: all 0.2s; font-size: 13px; font-weight: 500; color: var(--cinza); background: var(--branco); user-select: none; }
+  .radio-btn:hover { border-color: var(--laranja); color: var(--laranja); background: var(--laranja-claro); }
   .radio-btn input { display: none; }
-
-  .radio-btn.selected {
-    border-color: var(--laranja);
-    background: var(--laranja-claro);
-    color: var(--laranja-escuro);
-    font-weight: 600;
-  }
-
-  .radio-dot {
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    border: 2px solid currentColor;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .radio-btn.selected .radio-dot::after {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--laranja);
-  }
-
-  /* UPLOAD */
-  .upload-area {
-    border: 2px dashed var(--borda);
-    border-radius: 12px;
-    padding: 28px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--cinza-claro);
-  }
-
-  .upload-area:hover {
-    border-color: var(--laranja);
-    background: var(--laranja-claro);
-  }
-
-  .upload-area.has-file {
-    border-color: #22C55E;
-    background: #F0FDF4;
-  }
-
+  .radio-btn.selected { border-color: var(--laranja); background: var(--laranja-claro); color: var(--laranja-escuro); font-weight: 600; }
+  .radio-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .radio-btn.selected .radio-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--laranja); }
+  .upload-area { border: 2px dashed var(--borda); border-radius: 12px; padding: 28px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--cinza-claro); }
+  .upload-area:hover { border-color: var(--laranja); background: var(--laranja-claro); }
+  .upload-area.has-file { border-color: #22C55E; background: #F0FDF4; }
   .upload-icon { font-size: 32px; margin-bottom: 8px; }
   .upload-text { font-size: 13px; color: var(--cinza); }
   .upload-text strong { color: var(--laranja); }
   .upload-filename { font-size: 13px; color: #22C55E; font-weight: 600; margin-top: 6px; }
-
   .upload-area input[type="file"] { display: none; }
-
-  /* DIVISOR */
-  .divider {
-    height: 1px;
-    background: var(--borda);
-    margin: 20px 0;
-  }
-
-  /* BOTÕES */
-  .btn-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 28px;
-    gap: 12px;
-  }
-
-  .btn {
-    padding: 14px 32px;
-    border-radius: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btn-primary {
-    background: var(--laranja);
-    color: var(--branco);
-    box-shadow: 0 4px 16px rgba(240,124,31,0.35);
-  }
-
-  .btn-primary:hover {
-    background: var(--laranja-escuro);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(240,124,31,0.45);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--cinza);
-    border: 1.5px solid var(--borda);
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--laranja);
-    color: var(--laranja);
-  }
-
-  .btn-submit {
-    background: #22C55E;
-    color: var(--branco);
-    box-shadow: 0 4px 16px rgba(34,197,94,0.35);
-    width: 100%;
-    justify-content: center;
-    font-size: 16px;
-    padding: 16px;
-  }
-
-  .btn-submit:hover {
-    background: #16A34A;
-    transform: translateY(-1px);
-  }
-
-  /* SUCESSO */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 60px 24px;
-  }
-
+  .divider { height: 1px; background: var(--borda); margin: 20px 0; }
+  .btn-group { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
+  .btn { padding: 14px 32px; border-radius: 12px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+  .btn-primary { background: var(--laranja); color: var(--branco); box-shadow: 0 4px 16px rgba(240,124,31,0.35); }
+  .btn-primary:hover { background: var(--laranja-escuro); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--cinza); border: 1.5px solid var(--borda); }
+  .btn-secondary:hover { border-color: var(--laranja); color: var(--laranja); }
+  .btn-submit { background: #22C55E; color: var(--branco); box-shadow: 0 4px 16px rgba(34,197,94,0.35); width: 100%; justify-content: center; font-size: 16px; padding: 16px; }
+  .btn-submit:hover { background: #16A34A; transform: translateY(-1px); }
+  .btn-submit:disabled { background: #9CA3AF; box-shadow: none; cursor: not-allowed; transform: none; }
+  .success-screen { display: none; text-align: center; padding: 60px 24px; }
   .success-screen.show { display: block; }
-
-  .success-icon {
-    width: 80px; height: 80px;
-    background: #F0FDF4;
-    border: 3px solid #22C55E;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 36px;
-    margin: 0 auto 24px;
-  }
-
-  .success-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--preto);
-    margin-bottom: 12px;
-  }
-
-  .success-msg {
-    font-size: 15px;
-    color: var(--cinza);
-    line-height: 1.7;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  /* INFO BOX */
-  .info-box {
-    background: var(--laranja-claro);
-    border-left: 4px solid var(--laranja);
-    border-radius: 0 10px 10px 0;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    font-size: 13px;
-    color: var(--laranja-escuro);
-    line-height: 1.6;
-  }
-
-  /* CONTADOR */
-  .step-count {
-    font-size: 12px;
-    color: var(--cinza);
-    font-weight: 600;
-  }
-
+  .success-icon { width: 80px; height: 80px; background: #F0FDF4; border: 3px solid #22C55E; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 24px; }
+  .success-title { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; color: var(--preto); margin-bottom: 12px; }
+  .success-msg { font-size: 15px; color: var(--cinza); line-height: 1.7; max-width: 440px; margin: 0 auto; }
+  .info-box { background: var(--laranja-claro); border-left: 4px solid var(--laranja); border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: var(--laranja-escuro); line-height: 1.6; }
+  .step-count { font-size: 12px; color: var(--cinza); font-weight: 600; }
   .step-count span { color: var(--laranja); font-weight: 700; }
+  .lgpd-box { background: #F8FAFF; border: 1.5px solid #DBEAFE; border-radius: 12px; padding: 20px 22px; margin-bottom: 20px; }
+  .lgpd-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #1D4ED8; margin-bottom: 10px; }
+  .lgpd-text { font-size: 13px; color: #374151; line-height: 1.8; }
+  .lgpd-text p { margin-bottom: 8px; }
+  .lgpd-text p:last-child { margin-bottom: 0; }
+  .checkbox-lgpd { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; background: var(--branco); border: 2px solid var(--borda); border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+  .checkbox-lgpd:hover { border-color: var(--laranja); background: var(--laranja-claro); }
+  .checkbox-lgpd.checked { border-color: #22C55E; background: #F0FDF4; }
+  .checkbox-lgpd input[type="checkbox"] { display: none; }
+  .checkbox-custom { width: 22px; height: 22px; border: 2px solid var(--borda); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 1px; }
+  .checkbox-lgpd.checked .checkbox-custom { background: #22C55E; border-color: #22C55E; color: white; font-size: 14px; }
+  .checkbox-lgpd-text { font-size: 13px; color: var(--cinza); line-height: 1.6; }
+  .checkbox-lgpd.checked .checkbox-lgpd-text { color: #166534; font-weight: 600; }
+  .upload-progress { margin-top: 12px; font-size: 13px; color: var(--cinza); display: none; }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div class="logo-area">
@@ -537,7 +129,6 @@
   <div class="hero-divider"></div>
 </div>
 
-<!-- BARRA DE PROGRESSO -->
 <div class="progress-bar-wrap">
   <div class="progress-inner">
     <div class="step-item active" id="si1" onclick="goStep(1)">
@@ -567,10 +158,9 @@
   </div>
 </div>
 
-<!-- CONTAINER -->
 <div class="container">
 
-  <!-- ETAPA 1: DADOS PESSOAIS -->
+  <!-- ETAPA 1 -->
   <div class="section active" id="step1">
     <div class="section-header">
       <div class="section-icon">👤</div>
@@ -579,59 +169,31 @@
         <div class="section-subtitle">Informações básicas de identificação</div>
       </div>
     </div>
-
     <div class="card">
       <div class="field" style="margin-bottom:16px;">
         <label>Está trabalhando atualmente? <span class="req">*</span></label>
         <div class="radio-group">
-          <label class="radio-btn" onclick="selectRadio(this,'trabalhando')">
-            <input type="radio" name="trabalhando" value="Sim">
-            <div class="radio-dot"></div> Sim
-          </label>
-          <label class="radio-btn" onclick="selectRadio(this,'trabalhando')">
-            <input type="radio" name="trabalhando" value="Não">
-            <div class="radio-dot"></div> Não
-          </label>
+          <label class="radio-btn" onclick="selectRadio(this,'trabalhando')"><input type="radio" name="trabalhando" value="Sim"><div class="radio-dot"></div> Sim</label>
+          <label class="radio-btn" onclick="selectRadio(this,'trabalhando')"><input type="radio" name="trabalhando" value="Não"><div class="radio-dot"></div> Não</label>
         </div>
       </div>
-
       <div class="divider"></div>
-
       <div class="grid-2">
-        <div class="field" style="grid-column:1/-1;">
-          <label>Nome completo <span class="req">*</span></label>
-          <input type="text" id="nome" placeholder="Seu nome completo">
-        </div>
-        <div class="field">
-          <label>Telefone com DDD <span class="req">*</span></label>
-          <input type="tel" id="telefone" placeholder="(11) 99999-9999">
-        </div>
-        <div class="field">
-          <label>CPF <span class="req">*</span></label>
-          <input type="text" id="cpf" placeholder="Somente números">
-        </div>
-        <div class="field">
-          <label>Data de nascimento <span class="req">*</span></label>
-          <input type="date" id="nascimento">
-        </div>
-        <div class="field">
-          <label>CEP residencial <span class="req">*</span></label>
-          <input type="text" id="cep" placeholder="Somente números">
-        </div>
-        <div class="field" style="grid-column:1/-1;">
-          <label>E-mail <span class="req">*</span></label>
-          <input type="email" id="email" placeholder="seu@email.com (letras minúsculas)">
-        </div>
+        <div class="field" style="grid-column:1/-1;"><label>Nome completo <span class="req">*</span></label><input type="text" id="nome" placeholder="Seu nome completo"></div>
+        <div class="field"><label>Telefone com DDD <span class="req">*</span></label><input type="tel" id="telefone" placeholder="(11) 99999-9999"></div>
+        <div class="field"><label>CPF <span class="req">*</span></label><input type="text" id="cpf" placeholder="Somente números"></div>
+        <div class="field"><label>Data de nascimento <span class="req">*</span></label><input type="date" id="nascimento"></div>
+        <div class="field"><label>CEP residencial <span class="req">*</span></label><input type="text" id="cep" placeholder="Somente números"></div>
+        <div class="field" style="grid-column:1/-1;"><label>E-mail <span class="req">*</span></label><input type="email" id="email" placeholder="seu@email.com"></div>
       </div>
     </div>
-
     <div class="btn-group">
       <div class="step-count">Etapa <span>1</span> de 5</div>
       <button class="btn btn-primary" onclick="nextStep(1)">Próximo ›</button>
     </div>
   </div>
 
-  <!-- ETAPA 2: EXPERIÊNCIA -->
+  <!-- ETAPA 2 -->
   <div class="section" id="step2">
     <div class="section-header">
       <div class="section-icon">🔥</div>
@@ -640,71 +202,40 @@
         <div class="section-subtitle">Sua trajetória como bombeiro civil</div>
       </div>
     </div>
-
     <div class="card">
       <div class="field" style="margin-bottom:20px;">
         <label>Data da última reciclagem (ou conclusão do curso) <span class="req">*</span></label>
         <input type="date" id="reciclagem">
       </div>
-
       <div class="field" style="margin-bottom:20px;">
         <label>Experiência como Bombeiro Civil <span class="req">*</span></label>
         <div class="radio-group">
-          <label class="radio-btn" onclick="selectRadio(this,'experiencia')">
-            <input type="radio" name="experiencia" value="Sim">
-            <div class="radio-dot"></div> Sim
-          </label>
-          <label class="radio-btn" onclick="selectRadio(this,'experiencia')">
-            <input type="radio" name="experiencia" value="Não">
-            <div class="radio-dot"></div> Não
-          </label>
-          <label class="radio-btn" onclick="selectRadio(this,'experiencia')">
-            <input type="radio" name="experiencia" value="Apenas Evento">
-            <div class="radio-dot"></div> Apenas Evento
-          </label>
-          <label class="radio-btn" onclick="selectRadio(this,'experiencia')">
-            <input type="radio" name="experiencia" value="Recém formado">
-            <div class="radio-dot"></div> Recém formado
-          </label>
+          <label class="radio-btn" onclick="selectRadio(this,'experiencia')"><input type="radio" name="experiencia" value="Sim"><div class="radio-dot"></div> Sim</label>
+          <label class="radio-btn" onclick="selectRadio(this,'experiencia')"><input type="radio" name="experiencia" value="Não"><div class="radio-dot"></div> Não</label>
+          <label class="radio-btn" onclick="selectRadio(this,'experiencia')"><input type="radio" name="experiencia" value="Apenas Evento"><div class="radio-dot"></div> Apenas Evento</label>
+          <label class="radio-btn" onclick="selectRadio(this,'experiencia')"><input type="radio" name="experiencia" value="Recém formado"><div class="radio-dot"></div> Recém formado</label>
         </div>
       </div>
-
       <div class="divider"></div>
-
       <div class="field" style="margin-bottom:20px;">
         <label>Possui curso de APH? <span class="req">*</span></label>
         <div class="radio-group">
-          <label class="radio-btn" onclick="selectRadio(this,'aph')">
-            <input type="radio" name="aph" value="Sim">
-            <div class="radio-dot"></div> Sim
-          </label>
-          <label class="radio-btn" onclick="selectRadio(this,'aph')">
-            <input type="radio" name="aph" value="Não">
-            <div class="radio-dot"></div> Não
-          </label>
+          <label class="radio-btn" onclick="selectRadio(this,'aph')"><input type="radio" name="aph" value="Sim"><div class="radio-dot"></div> Sim</label>
+          <label class="radio-btn" onclick="selectRadio(this,'aph')"><input type="radio" name="aph" value="Não"><div class="radio-dot"></div> Não</label>
         </div>
       </div>
-
       <div class="field" style="margin-bottom:20px;">
         <label>Possui curso de DEA? <span class="req">*</span></label>
         <div class="radio-group">
-          <label class="radio-btn" onclick="selectRadio(this,'dea')">
-            <input type="radio" name="dea" value="Sim">
-            <div class="radio-dot"></div> Sim
-          </label>
-          <label class="radio-btn" onclick="selectRadio(this,'dea')">
-            <input type="radio" name="dea" value="Não">
-            <div class="radio-dot"></div> Não
-          </label>
+          <label class="radio-btn" onclick="selectRadio(this,'dea')"><input type="radio" name="dea" value="Sim"><div class="radio-dot"></div> Sim</label>
+          <label class="radio-btn" onclick="selectRadio(this,'dea')"><input type="radio" name="dea" value="Não"><div class="radio-dot"></div> Não</label>
         </div>
       </div>
-
       <div class="field">
         <label>Cursos de NR <span class="req">*</span></label>
         <textarea id="cursos_nr" placeholder="Se sim, liste quais. Se não, escreva 'Não possuo'."></textarea>
       </div>
     </div>
-
     <div class="btn-group">
       <button class="btn btn-secondary" onclick="prevStep(2)">‹ Voltar</button>
       <div class="step-count">Etapa <span>2</span> de 5</div>
@@ -712,7 +243,7 @@
     </div>
   </div>
 
-  <!-- ETAPA 3: TÉCNICO -->
+  <!-- ETAPA 3 -->
   <div class="section" id="step3">
     <div class="section-header">
       <div class="section-icon">🧯</div>
@@ -721,11 +252,7 @@
         <div class="section-subtitle">Demonstre seu conhecimento técnico</div>
       </div>
     </div>
-
-    <div class="info-box">
-      💡 Responda com base na sua experiência e treinamento. Seja claro e objetivo.
-    </div>
-
+    <div class="info-box">💡 Responda com base na sua experiência e treinamento. Seja claro e objetivo.</div>
     <div class="card">
       <div class="grid-1">
         <div class="field"><label>Por que escolheu a profissão de Bombeiro Civil? <span class="req">*</span></label><textarea id="q1" placeholder="Sua resposta..."></textarea></div>
@@ -749,7 +276,6 @@
         <div class="field"><label>Conduta em caso de vítima presa em elevador <span class="req">*</span></label><textarea id="q19" placeholder="Sua resposta..."></textarea></div>
       </div>
     </div>
-
     <div class="btn-group">
       <button class="btn btn-secondary" onclick="prevStep(3)">‹ Voltar</button>
       <div class="step-count">Etapa <span>3</span> de 5</div>
@@ -757,7 +283,7 @@
     </div>
   </div>
 
-  <!-- ETAPA 4: COMPORTAMENTAL -->
+  <!-- ETAPA 4 -->
   <div class="section" id="step4">
     <div class="section-header">
       <div class="section-icon">🧠</div>
@@ -766,7 +292,6 @@
         <div class="section-subtitle">Conte sobre sua postura e valores profissionais</div>
       </div>
     </div>
-
     <div class="card">
       <div class="grid-1">
         <div class="field"><label>Já precisou agir em equipe durante uma emergência? Como foi? <span class="req">*</span></label><textarea id="q20" placeholder="Sua resposta..."></textarea></div>
@@ -779,7 +304,6 @@
         <div class="field"><label>Se contratado, qual contribuição traria para a equipe e empresa? <span class="req">*</span></label><textarea id="q27" placeholder="Sua resposta..."></textarea></div>
       </div>
     </div>
-
     <div class="btn-group">
       <button class="btn btn-secondary" onclick="prevStep(4)">‹ Voltar</button>
       <div class="step-count">Etapa <span>4</span> de 5</div>
@@ -787,7 +311,7 @@
     </div>
   </div>
 
-  <!-- ETAPA 5: DOCUMENTOS -->
+  <!-- ETAPA 5 -->
   <div class="section" id="step5">
     <div class="section-header">
       <div class="section-icon">📎</div>
@@ -796,45 +320,45 @@
         <div class="section-subtitle">Envie seu currículo atualizado</div>
       </div>
     </div>
-
-    <div class="info-box">
-      📄 Tire uma foto ou escaneie seu currículo atualizado. Aceito: JPG, PNG. Máximo 100MB.
-    </div>
-
+    <div class="info-box">📄 Envie seu currículo em qualquer formato: PDF, JPG, PNG, Word, etc. Máximo 10MB.</div>
     <div class="card">
       <div class="field">
-        <label>Foto do currículo <span class="req">*</span></label>
+        <label>Currículo <span class="req">*</span></label>
         <div class="upload-area" id="area-curriculo" onclick="document.getElementById('file-curriculo').click()">
-          <input type="file" id="file-curriculo" accept="image/*" onchange="handleFile(this,'area-curriculo','nome-curriculo')">
+          <input type="file" id="file-curriculo" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.bmp,.webp" onchange="handleFile(this)">
           <div class="upload-icon">📄</div>
-          <div class="upload-text">Clique para selecionar a foto do currículo<br><strong>JPG, PNG</strong> — máximo 100MB</div>
+          <div class="upload-text">Clique para selecionar o currículo<br><strong>PDF, Word, JPG, PNG</strong> — máximo 10MB</div>
           <div class="upload-filename" id="nome-curriculo"></div>
         </div>
+        <div class="upload-progress" id="upload-progress">⏳ Processando arquivo...</div>
       </div>
     </div>
 
     <!-- LGPD -->
-<div style="background:#F8FAFF;border:1.5px solid #DBEAFE;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
-  <div style="font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;color:#1D4ED8;margin-bottom:10px;">🔒 Privacidade e Proteção de Dados</div>
-  <div style="font-size:13px;color:#374151;line-height:1.8;">
-    <p style="margin-bottom:8px;">A <strong>SempreVidas</strong> coleta seus dados pessoais estritamente para fins de processo seletivo, em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018)</strong>.</p>
-    <p style="margin-bottom:8px;">Suas informações serão utilizadas apenas para avaliar sua candidatura e não serão compartilhadas com terceiros sem o seu consentimento.</p>
-    <p>Você pode solicitar a exclusão dos seus dados a qualquer momento pelo e-mail: <a href="mailto:rh@semprevidas.com.br" style="color:#1D4ED8;font-weight:600;">rh@semprevidas.com.br</a></p>
-  </div>
-</div>
-<div style="margin-bottom:20px;">
-  <label style="display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:#fff;border:2px solid #E8E8E8;border-radius:12px;cursor:pointer;" id="lgpd-label" onclick="toggleLGPD()">
-    <input type="checkbox" id="lgpd-check" style="display:none;">
-    <div id="lgpd-custom" style="width:22px;height:22px;border:2px solid #E8E8E8;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;"></div>
-    <div style="font-size:13px;color:#6B6B6B;line-height:1.6;">Li e concordo que meus dados sejam utilizados pela SempreVidas para fins de processo seletivo.</div>
-  </label>
-</div><div class="btn-group" style="flex-direction:column;">
-      <button class="btn btn-submit" onclick="enviar()">
+    <div class="lgpd-box">
+      <div class="lgpd-title">🔒 Privacidade e Proteção de Dados</div>
+      <div class="lgpd-text">
+        <p>A <strong>SempreVidas</strong> coleta seus dados pessoais estritamente para fins de processo seletivo, em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018)</strong>.</p>
+        <p>Suas informações serão utilizadas apenas para avaliar sua candidatura e não serão compartilhadas com terceiros sem o seu consentimento.</p>
+        <p>Você pode solicitar a exclusão dos seus dados a qualquer momento pelo e-mail: <a href="mailto:rh@semprevidas.com.br" style="color:#1D4ED8;font-weight:600;">rh@semprevidas.com.br</a></p>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:20px;">
+      <label>Consentimento <span class="req">*</span></label>
+      <label class="checkbox-lgpd" id="lgpd-label" onclick="toggleLGPD()">
+        <input type="checkbox" id="lgpd-check">
+        <div class="checkbox-custom" id="lgpd-custom"></div>
+        <div class="checkbox-lgpd-text">Li e concordo que meus dados sejam utilizados pela SempreVidas para fins de processo seletivo.</div>
+      </label>
+    </div>
+
+    <div class="btn-group" style="flex-direction:column;">
+      <button class="btn btn-submit" id="btn-enviar" onclick="enviar()" disabled>
         ✅ Enviar Candidatura
       </button>
       <button class="btn btn-secondary" style="align-self:flex-start;" onclick="prevStep(5)">‹ Voltar</button>
     </div>
-   
   </div>
 
   <!-- SUCESSO -->
@@ -855,15 +379,60 @@
 <script>
 let currentStep = 1;
 const totalSteps = 5;
+let curriculoBase64 = '';
+let curriculoNome = '';
+let curriculoTipo = '';
 
 function goStep(step) {
   document.getElementById('step' + currentStep).classList.remove('active');
   document.getElementById('si' + currentStep).classList.remove('active');
-
   currentStep = step;
   document.getElementById('step' + currentStep).classList.add('active');
   document.getElementById('si' + currentStep).classList.add('active');
   window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleLGPD() {
+  const check = document.getElementById('lgpd-check');
+  const label = document.getElementById('lgpd-label');
+  const custom = document.getElementById('lgpd-custom');
+  const btn = document.getElementById('btn-enviar');
+  check.checked = !check.checked;
+  if (check.checked) {
+    label.classList.add('checked');
+    custom.textContent = '✓';
+    btn.disabled = false;
+  } else {
+    label.classList.remove('checked');
+    custom.textContent = '';
+    btn.disabled = true;
+  }
+}
+
+function handleFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  
+  if (file.size > 10 * 1024 * 1024) {
+    alert('Arquivo muito grande! Máximo 10MB.');
+    input.value = '';
+    return;
+  }
+
+  document.getElementById('upload-progress').style.display = 'block';
+  document.getElementById('area-curriculo').classList.add('has-file');
+  document.getElementById('nome-curriculo').textContent = '⏳ Processando: ' + file.name;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result.split(',')[1];
+    curriculoBase64 = base64;
+    curriculoNome = file.name;
+    curriculoTipo = file.type;
+    document.getElementById('nome-curriculo').textContent = '✓ ' + file.name;
+    document.getElementById('upload-progress').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
 }
 
 function validarEtapa(etapa) {
@@ -900,7 +469,6 @@ function validarEtapa(etapa) {
       const el = document.getElementById('q' + i);
       if (el && !el.value.trim()) {
         el.focus();
-        el.style.borderColor = 'var(--laranja)';
         alert('Por favor, responda todas as perguntas técnicas antes de continuar.');
         return false;
       }
@@ -911,7 +479,6 @@ function validarEtapa(etapa) {
       const el = document.getElementById('q' + i);
       if (el && !el.value.trim()) {
         el.focus();
-        el.style.borderColor = 'var(--laranja)';
         alert('Por favor, responda todas as perguntas comportamentais antes de continuar.');
         return false;
       }
@@ -947,41 +514,16 @@ function selectRadio(label, name) {
   label.classList.add('selected');
 }
 
-function handleFile(input, areaId, nameId) {
-  const file = input.files[0];
-  if (file) {
-    document.getElementById(areaId).classList.add('has-file');
-    document.getElementById(nameId).textContent = '✓ ' + file.name;
-  }
-}
-
-function toggleLGPD() {
-  const check = document.getElementById('lgpd-check');
-  const label = document.getElementById('lgpd-label');
-  const custom = document.getElementById('lgpd-custom');
-  check.checked = !check.checked;
-  if (check.checked) {
-    label.style.borderColor = '#22C55E';
-    label.style.background = '#F0FDF4';
-    custom.style.background = '#22C55E';
-    custom.style.borderColor = '#22C55E';
-    custom.style.color = 'white';
-    custom.textContent = '✓';
-  } else {
-    label.style.borderColor = '#E8E8E8';
-    label.style.background = '#fff';
-    custom.style.background = '';
-    custom.style.borderColor = '#E8E8E8';
-    custom.textContent = '';
-  }
-}function enviar() {
+function enviar() {
   const lgpd = document.getElementById('lgpd-check').checked;
-  if (!lgpd) {
-    alert('Por favor, aceite os termos de privacidade antes de enviar.');
-    return;
-  }
-  // Coleta todos os dados
+  if (!lgpd) { alert('Por favor, aceite os termos de privacidade antes de enviar.'); return; }
+
+  const btn = document.getElementById('btn-enviar');
+  btn.disabled = true;
+  btn.textContent = '⏳ Enviando...';
+
   const dados = {
+    timestamp: new Date().toLocaleString('pt-BR'),
     trabalhando: document.querySelector('input[name="trabalhando"]:checked')?.value || '',
     nome: document.getElementById('nome').value,
     telefone: document.getElementById('telefone').value,
@@ -994,24 +536,17 @@ function toggleLGPD() {
     aph: document.querySelector('input[name="aph"]:checked')?.value || '',
     dea: document.querySelector('input[name="dea"]:checked')?.value || '',
     cursos_nr: document.getElementById('cursos_nr').value,
-    timestamp: new Date().toLocaleString('pt-BR'),
-    lat: window._candidatoLat || '',
-    lng: window._candidatoLng || ''
+    curriculo_base64: curriculoBase64,
+    curriculo_nome: curriculoNome,
+    curriculo_tipo: curriculoTipo
   };
-
-  // Valida campos obrigatórios básicos
-  if (!dados.nome || !dados.email || !dados.cpf) {
-    alert('Por favor, preencha todos os campos obrigatórios antes de enviar.');
-    goStep(1);
-    return;
-  }
-
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQpo4SBrqqv01pEfs_0tFjbSBJwiI6MRkrfdGW4JpkGnKiGyCsDXKLM8xgZhOpWR8_NA/exec';
 
   for (let i = 1; i <= 27; i++) {
     const el = document.getElementById('q' + i);
     dados['q' + i] = el ? el.value : '';
   }
+
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQpo4SBrqqv01pEfs_0tFjbSBJwiI6MRkrfdGW4JpkGnKiGyCsDXKLM8xgZhOpWR8_NA/exec';
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
@@ -1025,23 +560,13 @@ function toggleLGPD() {
   });
 }
 
-// Busca coordenadas reais quando candidato preenche o CEP
 document.getElementById('cep').addEventListener('blur', async function() {
   const cep = this.value.replace(/\D/g,'');
   if (cep.length === 8) {
     try {
       const viacep = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
       const addr = await viacep.json();
-      if (!addr.erro) {
-        const q = encodeURIComponent((addr.logradouro||'') + ', ' + addr.localidade + ', ' + addr.uf + ', Brasil');
-        const geo = await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + q + '&limit=1', {headers:{'User-Agent':'SempreVidas/1.0'}});
-        const geoData = await geo.json();
-        if (geoData && geoData[0]) {
-          window._candidatoLat = geoData[0].lat;
-          window._candidatoLng = geoData[0].lon;
-        }
-      }
-    } catch(e) { console.log('Erro geoloc CEP'); }
+    } catch(e) {}
   }
 });
 </script>
