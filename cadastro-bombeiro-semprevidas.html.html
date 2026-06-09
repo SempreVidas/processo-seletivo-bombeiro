@@ -384,6 +384,13 @@ let curriculoNome = '';
 let curriculoTipo = '';
 
 function goStep(step) {
+  // Só permite avançar, não pular etapas
+  if (step > currentStep) {
+    // Valida todas as etapas entre a atual e a destino
+    for (let i = currentStep; i < step; i++) {
+      if (!validarEtapa(i)) return;
+    }
+  }
   document.getElementById('step' + currentStep).classList.remove('active');
   document.getElementById('si' + currentStep).classList.remove('active');
   currentStep = step;
