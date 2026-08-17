@@ -472,7 +472,7 @@ async function carregarCandidatos() {
           tel: (c['Telefone'] || '').toString().trim(),
           cpf: (c['CPF'] || '').toString().trim(),
           nasc: (c['Nascimento'] || '').toString().trim(),
-          cep: (c['CEP'] || '').toString().trim(),
+          cep: (c['CEP'] || '').toString().trim().padStart(8,'0'),
           trab: (c['Trabalhando'] || '').trim(),
           exp: (c['Experiência'] || '').trim(),
           recic: (c['Reciclagem'] || '').toString().trim(),
