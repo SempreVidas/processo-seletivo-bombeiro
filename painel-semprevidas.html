@@ -211,9 +211,15 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
           <div id="p-certs"></div>
           <div style="margin-top:10px;"><div class="perfil-field"><label>Cursos NR</label><p id="p-nr" style="font-weight:400;font-size:13px;line-height:1.6;"></p></div></div>
         </div>
-        <div style="margin-bottom:16px;padding:14px 16px;background:#F0FDF4;border:1.5px solid #22C55E;border-radius:12px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#166534;margin-bottom:8px;">🗺️ Rota no Google Maps</div>
-          <button id="btn-maps" style="background:#22C55E;color:white;border:none;border-radius:8px;padding:10px 20px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;">🗺️ Abrir rota no Google Maps</button>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="padding:14px 16px;background:#F0FDF4;border:1.5px solid #22C55E;border-radius:12px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#166534;margin-bottom:8px;">🗺️ Google Maps</div>
+            <button id="btn-maps" style="background:#22C55E;color:white;border:none;border-radius:8px;padding:10px;font-family:Montserrat,sans-serif;font-size:12px;font-weight:700;cursor:pointer;width:100%;">🗺️ Abrir rota</button>
+          </div>
+          <div style="padding:14px 16px;background:#EFF6FF;border:1.5px solid #1D4ED8;border-radius:12px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#1D4ED8;margin-bottom:8px;">⚖️ Jusbrasil</div>
+            <button id="btn-jusbrasil" style="background:#1D4ED8;color:white;border:none;border-radius:8px;padding:10px;font-family:Montserrat,sans-serif;font-size:12px;font-weight:700;cursor:pointer;width:100%;">⚖️ Consultar CPF</button>
+          </div>
         </div>
         <div style="display:flex;gap:10px;margin-top:4px;">
           <button class="btn-acao btn-editar" id="btn-editar-perfil" style="padding:8px 16px;font-size:12px;">✏️ Editar dados</button>
@@ -588,6 +594,13 @@ document.getElementById('btn-maps').addEventListener('click', function() {
   var origem = candidatoAtual.cep + ', São Paulo, SP, Brasil';
   var destino = postoSelecionado.end + ', São Paulo, SP, Brasil';
   window.open('https://www.google.com/maps/dir/' + encodeURIComponent(origem) + '/' + encodeURIComponent(destino), '_blank');
+});
+
+document.getElementById('btn-jusbrasil').addEventListener('click', function() {
+  if (!candidatoAtual) return;
+  var cpf = candidatoAtual.cpf.replace(/\D/g, '');
+  if (!cpf) { alert('CPF não encontrado para este candidato.'); return; }
+  window.open('https://www.jusbrasil.com.br/consulta-processual/busca?q=' + cpf, '_blank');
 });
 
 document.getElementById('btn-editar-perfil').addEventListener('click', function() {
