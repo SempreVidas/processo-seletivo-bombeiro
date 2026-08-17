@@ -9,6 +9,8 @@
 :root{--laranja:#F07C1F;--laranja-escuro:#C45E00;--laranja-claro:#FFF3E8;--preto:#1A1A1A;--cinza:#6B6B6B;--cinza-claro:#F5F5F5;--branco:#FFFFFF;--borda:#E8E8E8;--verde:#22C55E;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Open Sans',sans-serif;background:#F8F5F2;color:var(--preto);}
+
+/* LOGIN */
 .login-overlay{position:fixed;inset:0;background:var(--preto);z-index:9999;display:flex;align-items:center;justify-content:center;}
 .login-box{background:#1E1E1E;border:1px solid #333;border-radius:20px;padding:40px;width:360px;text-align:center;}
 .login-logo{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;color:var(--branco);margin-bottom:6px;}
@@ -20,6 +22,8 @@ body{font-family:'Open Sans',sans-serif;background:#F8F5F2;color:var(--preto);}
 .login-btn{width:100%;background:var(--laranja);color:var(--branco);border:none;border-radius:10px;padding:13px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
 .login-btn:hover{background:var(--laranja-escuro);}
 .login-erro{font-size:12px;color:#EF4444;margin-top:10px;display:none;}
+
+/* HEADER */
 .header{background:var(--preto);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .logo{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:var(--branco);}
 .logo span{color:var(--laranja);}
@@ -27,7 +31,11 @@ body{font-family:'Open Sans',sans-serif;background:#F8F5F2;color:var(--preto);}
 .header-tag{font-size:11px;background:var(--laranja);color:var(--branco);padding:4px 12px;border-radius:100px;font-weight:600;}
 .logout-btn{font-size:12px;color:#888;background:none;border:1px solid #444;border-radius:6px;padding:4px 10px;cursor:pointer;}
 .logout-btn:hover{color:var(--branco);}
+
+/* LAYOUT */
 .layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 52px);}
+
+/* SIDEBAR */
 .sidebar{background:var(--branco);border-right:1px solid var(--borda);padding:20px;overflow-y:auto;max-height:calc(100vh - 52px);position:sticky;top:52px;}
 .sidebar h2{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px;}
 .sidebar p{font-size:12px;color:var(--cinza);margin-bottom:16px;}
@@ -44,9 +52,13 @@ body{font-family:'Open Sans',sans-serif;background:#F8F5F2;color:var(--preto);}
 .posto-item:hover,.posto-item.sel{border-color:var(--laranja);background:var(--laranja-claro);}
 .posto-item-nome{font-size:12px;font-weight:700;}
 .posto-item-cep{font-size:11px;color:var(--cinza);margin-top:2px;}
+
+/* MAIN */
 .main{padding:24px 28px;}
 .posto-info{display:none;background:var(--laranja-claro);border:1.5px solid var(--laranja);border-radius:12px;padding:14px 18px;margin-bottom:20px;align-items:center;gap:14px;}
 .posto-info.show{display:flex;}
+.posto-info-nome{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--laranja-escuro);}
+.posto-info-end{font-size:12px;color:var(--laranja-escuro);margin-top:2px;}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
 .stat{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:14px 16px;}
 .stat-val{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:800;color:var(--laranja);}
@@ -59,17 +71,28 @@ th{background:var(--cinza-claro);padding:10px 14px;text-align:left;font-size:11p
 td{padding:11px 14px;border-bottom:1px solid var(--borda);vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
+.rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;}
+.rank-1{background:#FEF3C7;color:#B45309;}
+.rank-2{background:#F1F5F9;color:#475569;}
+.rank-3{background:#FEF9C3;color:#92400E;}
+.rank-n{background:var(--cinza-claro);color:var(--cinza);}
+.dist-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}
+.dist-perto{background:#DCFCE7;color:#166534;}
+.dist-medio{background:#FEF9C3;color:#854D0E;}
+.dist-longe{background:#FEE2E2;color:#991B1B;}
 .btn-acao{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;margin-right:4px;}
 .btn-ver{background:#F0FDF4;color:#166534;}
 .btn-ver:hover{background:#DCFCE7;}
-.btn-cv{background:#EFF6FF;color:#1D4ED8;}
-.btn-cv:hover{background:#DBEAFE;}
+.btn-editar{background:#EFF6FF;color:#1D4ED8;}
+.btn-editar:hover{background:#DBEAFE;}
 .btn-excluir{background:#FEF2F2;color:#DC2626;}
 .btn-excluir:hover{background:#FEE2E2;}
 .empty{text-align:center;padding:60px 20px;color:var(--cinza);}
 .empty-icon{font-size:40px;margin-bottom:12px;}
 .empty-title{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;margin-bottom:6px;color:var(--preto);}
 .empty-sub{font-size:13px;}
+
+/* MODAL PERFIL COMPLETO */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--branco);border-radius:16px;width:100%;max-width:700px;margin:auto;}
@@ -80,10 +103,14 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
 .modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:#888;line-height:1;}
 .modal-close:hover{color:var(--branco);}
 .modal-body{padding:24px 28px;}
+
+/* DIST CARD */
 .dist-card{background:var(--laranja-claro);border:1.5px solid var(--laranja);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:20px;}
 .dist-card-km{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:var(--laranja);}
 .dist-card-label{font-size:13px;color:var(--laranja-escuro);font-weight:600;}
 .dist-card-posto{font-size:12px;color:var(--laranja-escuro);margin-top:2px;}
+
+/* SEÇÕES DO PERFIL */
 .perfil-section{margin-bottom:20px;}
 .perfil-section-title{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--cinza);border-bottom:1px solid var(--borda);padding-bottom:8px;margin-bottom:12px;}
 .perfil-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -92,14 +119,19 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
 .perfil-field.full{grid-column:1/-1;}
 .cert-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:var(--laranja-claro);color:var(--laranja-escuro);margin-right:6px;}
 .cert-badge.no{background:#FEF2F2;color:#DC2626;}
+
 .resposta-item{margin-bottom:14px;padding:12px 14px;background:var(--cinza-claro);border-radius:10px;}
 .resposta-pergunta{font-size:11px;font-weight:700;color:var(--cinza);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px;}
-.resposta-texto{font-size:13px;color:var(--preto);line-height:1.6;white-space:pre-wrap;}
+.resposta-texto{font-size:13px;color:var(--preto);line-height:1.6;}
+
+/* ABAS */
 .abas{display:flex;gap:4px;margin-bottom:16px;background:var(--cinza-claro);padding:4px;border-radius:10px;}
 .aba{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--cinza);border-radius:8px;cursor:pointer;transition:all 0.2s;}
 .aba.active{background:var(--branco);color:var(--laranja);box-shadow:0 1px 4px rgba(0,0,0,0.08);}
 .aba-content{display:none;}
 .aba-content.active{display:block;}
+
+/* MODAL EDITAR */
 .modal-edit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:600;align-items:center;justify-content:center;}
 .modal-edit-overlay.open{display:flex;}
 .modal-edit{background:var(--branco);border-radius:16px;width:520px;max-height:85vh;overflow-y:auto;padding:28px;}
@@ -110,9 +142,12 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
 .edit-field.full{grid-column:1/-1;}
 .edit-field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;}
 .edit-field input,.edit-field select{border:1.5px solid var(--borda);border-radius:8px;padding:9px 11px;font-size:13px;font-family:'Open Sans',sans-serif;color:var(--preto);outline:none;}
+.edit-field input:focus,.edit-field select:focus{border-color:var(--laranja);}
 .edit-actions{display:flex;gap:10px;margin-top:20px;}
 .edit-save{flex:1;background:var(--laranja);color:var(--branco);border:none;border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
 .edit-cancel{flex:1;background:transparent;color:var(--cinza);border:1.5px solid var(--borda);border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* CONFIRMAR EXCLUSÃO */
 .confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:700;align-items:center;justify-content:center;}
 .confirm-overlay.open{display:flex;}
 .confirm-box{background:var(--branco);border-radius:16px;padding:32px;width:380px;text-align:center;}
@@ -122,15 +157,11 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
 .confirm-actions{display:flex;gap:10px;}
 .confirm-del{flex:1;background:#EF4444;color:var(--branco);border:none;border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
 .confirm-cancel{flex:1;background:transparent;color:var(--cinza);border:1.5px solid var(--borda);border-radius:8px;padding:11px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
-/* Toast */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:white;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity 0.3s;}
-.toast.show{opacity:1;}
 </style>
 </head>
 <body>
 
-<div class="toast" id="toast"></div>
-
+<!-- LOGIN -->
 <div class="login-overlay" id="login-overlay">
   <div class="login-box">
     <div class="login-logo">SEMPRE<span>VIDAS</span></div>
@@ -142,6 +173,7 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
   </div>
 </div>
 
+<!-- MODAL PERFIL COMPLETO -->
 <div class="modal-overlay" id="modal-perfil">
   <div class="modal">
     <div class="modal-header">
@@ -155,7 +187,8 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
       <button class="modal-close" onclick="fecharPerfil()">×</button>
     </div>
     <div class="modal-body">
-      <div class="dist-card">
+      <!-- DISTÂNCIA -->
+      <div class="dist-card" id="p-dist-card">
         <div>
           <div class="dist-card-km" id="p-dist-km">—</div>
           <div class="dist-card-label">do posto selecionado</div>
@@ -163,12 +196,15 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
         </div>
         <div style="font-size:48px;">📍</div>
       </div>
+
+      <!-- ABAS -->
       <div class="abas">
         <div class="aba active" onclick="trocarAba(0,this)">👤 Dados pessoais</div>
         <div class="aba" onclick="trocarAba(1,this)">🧯 Técnico</div>
         <div class="aba" onclick="trocarAba(2,this)">🧠 Comportamental</div>
       </div>
 
+      <!-- ABA 1: DADOS -->
       <div class="aba-content active" id="aba-0">
         <div class="perfil-section">
           <div class="perfil-section-title">Informações pessoais</div>
@@ -195,32 +231,18 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
             <div class="perfil-field"><label>Cursos NR</label><p id="p-nr" style="font-weight:400;font-size:13px;line-height:1.6;"></p></div>
           </div>
         </div>
-
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
-          <!-- CV -->
-          <div id="p-cv-section" style="display:none;padding:14px 16px;background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:12px;">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#1D4ED8;margin-bottom:8px;">📄 Currículo</div>
-            <button onclick="abrirCV()" style="background:#1D4ED8;color:white;border:none;border-radius:8px;padding:10px 20px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;">📄 Ver Currículo</button>
-          </div>
-          <!-- JUSBRASIL -->
-          <div style="padding:14px 16px;background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#92400E;margin-bottom:6px;">⚖️ Consultar Processos Trabalhistas</div>
-            <div style="font-size:12px;color:#92400E;margin-bottom:10px;">O CPF será copiado automaticamente — é só colar no Jusbrasil.</div>
-            <button onclick="abrirJusbrasil()" style="background:#92400E;color:white;border:none;border-radius:8px;padding:10px 20px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;">🔍 Abrir Jusbrasil (CPF copiado)</button>
-          </div>
-          <!-- MAPS -->
-          <div style="padding:14px 16px;background:#F0FDF4;border:1.5px solid #22C55E;border-radius:12px;">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#166534;margin-bottom:8px;">🗺️ Rota no Google Maps</div>
-            <button onclick="abrirMaps()" style="background:#22C55E;color:white;border:none;border-radius:8px;padding:10px 20px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;">🗺️ Abrir rota no Google Maps</button>
-          </div>
+        <div style="margin-bottom:16px;padding:14px 16px;background:#F0FDF4;border:1.5px solid #22C55E;border-radius:12px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#166534;margin-bottom:8px;">🗺️ Rota no Google Maps</div>
+          <div style="font-size:12px;color:#166534;margin-bottom:10px;">Clique para abrir a rota do candidato até o posto selecionado</div>
+          <button onclick="abrirMaps()" style="background:#22C55E;color:white;border:none;border-radius:8px;padding:10px 20px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;">🗺️ Abrir rota no Google Maps</button>
         </div>
-
-        <div style="display:flex;gap:10px;">
-          <button class="btn-acao btn-ver" style="padding:8px 16px;font-size:12px;" onclick="abrirEditar(candidatoAtual.id)">✏️ Editar dados</button>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <button class="btn-acao btn-editar" style="padding:8px 16px;font-size:12px;" onclick="abrirEditar(candidatoAtual.id)">✏️ Editar dados</button>
           <button class="btn-acao btn-excluir" style="padding:8px 16px;font-size:12px;" onclick="abrirExcluir(candidatoAtual.id)">🗑️ Excluir candidato</button>
         </div>
       </div>
 
+      <!-- ABA 2: TÉCNICO -->
       <div class="aba-content" id="aba-1">
         <div class="perfil-section">
           <div class="perfil-section-title">Perguntas técnicas</div>
@@ -228,6 +250,7 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
         </div>
       </div>
 
+      <!-- ABA 3: COMPORTAMENTAL -->
       <div class="aba-content" id="aba-2">
         <div class="perfil-section">
           <div class="perfil-section-title">Perguntas comportamentais</div>
@@ -238,6 +261,7 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
   </div>
 </div>
 
+<!-- MODAL EDITAR -->
 <div class="modal-edit-overlay" id="modal-editar">
   <div class="modal-edit">
     <div class="modal-edit-header">
@@ -266,6 +290,7 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
   </div>
 </div>
 
+<!-- CONFIRMAR EXCLUSÃO -->
 <div class="confirm-overlay" id="confirm-excluir">
   <div class="confirm-box">
     <div class="confirm-icon">🗑️</div>
@@ -278,6 +303,7 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
   </div>
 </div>
 
+<!-- HEADER -->
 <div class="header">
   <div class="logo">SEMPRE<span>VIDAS</span></div>
   <div class="header-right">
@@ -290,7 +316,8 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
   <div class="sidebar">
     <h2>Selecionar posto com vaga</h2>
     <p>Escolha o posto e veja quais candidatos moram mais perto</p>
-    <div class="field"><label>Zona</label>
+    <div class="field">
+      <label>Zona</label>
       <select id="filtro-zona" onchange="verTodos()">
         <option value="">Todas as zonas</option>
         <option value="Centro">Centro</option>
@@ -301,7 +328,8 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
         <option value="Grande SP">Grande SP</option>
       </select>
     </div>
-    <div class="field"><label>Experiência</label>
+    <div class="field">
+      <label>Experiência</label>
       <select id="filtro-exp" onchange="verTodos()">
         <option value="">Todas</option>
         <option value="Sim">Com experiência</option>
@@ -310,14 +338,16 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
         <option value="Não">Sem experiência</option>
       </select>
     </div>
-    <div class="field"><label>Curso APH</label>
+    <div class="field">
+      <label>Curso APH</label>
       <select id="filtro-aph" onchange="verTodos()">
         <option value="">Todos</option>
         <option value="sim">Possui APH</option>
         <option value="nao">Não possui APH</option>
       </select>
     </div>
-    <div class="field"><label>Curso DEA</label>
+    <div class="field">
+      <label>Curso DEA</label>
       <select id="filtro-dea" onchange="verTodos()">
         <option value="">Todos</option>
         <option value="sim">Possui DEA</option>
@@ -326,7 +356,8 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
     </div>
     <button class="btn" onclick="verTodos()">🔍 Filtrar</button>
     <button class="btn-sec" onclick="limparFiltros()">Limpar filtros</button>
-    <div class="field" style="margin-top:12px;"><label>Posto com vaga (para rota)</label>
+    <div class="field" style="margin-top:12px;">
+      <label>Posto com vaga (para rota)</label>
       <select id="select-posto" onchange="selecionarPosto()"><option value="">— Selecione um posto —</option></select>
     </div>
     <div class="divider"></div>
@@ -338,8 +369,8 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
     <div class="posto-info" id="posto-info">
       <div style="font-size:26px;">📍</div>
       <div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--laranja-escuro);" id="posto-info-nome"></div>
-        <div style="font-size:12px;color:var(--laranja-escuro);margin-top:2px;" id="posto-info-end"></div>
+        <div class="posto-info-nome" id="posto-info-nome"></div>
+        <div class="posto-info-end" id="posto-info-end"></div>
       </div>
     </div>
     <div class="stats">
@@ -349,11 +380,15 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
     </div>
     <div class="table-wrap">
       <div class="table-top">
-        <div class="table-title" id="table-title">Candidatos</div>
-        <div style="font-size:12px;color:var(--cinza)" id="table-sub">Carregando...</div>
+        <div class="table-title" id="table-title">Candidatos ordenados por proximidade</div>
+        <div style="font-size:12px;color:var(--cinza)" id="table-sub">Selecione um posto para começar</div>
       </div>
       <div id="table-body">
-        <div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">Carregando candidatos...</div></div>
+        <div class="empty">
+          <div class="empty-icon">🗺️</div>
+          <div class="empty-title">Selecione um posto</div>
+          <div class="empty-sub">Escolha o posto com vaga e clique em "Buscar candidatos próximos"</div>
+        </div>
       </div>
     </div>
   </div>
@@ -361,8 +396,36 @@ tr.clickable:hover td{background:#FFF8F3;cursor:pointer;}
 
 <script>
 const SENHA='9090';
-function getZona(cep){const s=(cep||'').replace(/\D/g,'');if(s.length<2)return'—';const p=s.substring(0,2);const z={'01':'Centro','02':'Zona Norte','03':'Zona Leste','04':'Zona Sul','05':'Zona Oeste','06':'Grande SP','07':'Grande SP','08':'Zona Leste','09':'Grande SP'};return z[p]||'—';}
-function getZonaCor(zona){const c={'Centro':'#EFF6FF|#1D4ED8','Zona Norte':'#F0FDF4|#166534','Zona Sul':'#FEF3C7|#92400E','Zona Leste':'#FEF2F2|#991B1B','Zona Oeste':'#F5F3FF|#5B21B6','Grande SP':'#F1F5F9|#475569'};return c[zona]||'#F1F5F9|#475569';}
+
+function getZona(cep) {
+  const s = (cep||'').replace(/\D/g,'');
+  if (s.length < 2) return '—';
+  const prefix = s.substring(0,2);
+  const zonas = {
+    '01': 'Centro',
+    '02': 'Zona Norte',
+    '03': 'Zona Leste',
+    '04': 'Zona Sul',
+    '05': 'Zona Oeste',
+    '06': 'Grande SP',
+    '07': 'Grande SP',
+    '08': 'Zona Leste',
+    '09': 'Grande SP'
+  };
+  return zonas[prefix] || '—';
+}
+
+function getZonaCor(zona) {
+  const cores = {
+    'Centro': '#EFF6FF|#1D4ED8',
+    'Zona Norte': '#F0FDF4|#166534',
+    'Zona Sul': '#FEF3C7|#92400E',
+    'Zona Leste': '#FEF2F2|#991B1B',
+    'Zona Oeste': '#F5F3FF|#5B21B6',
+    'Grande SP': '#F1F5F9|#475569'
+  };
+  return cores[zona] || '#F1F5F9|#475569';
+}
 
 const postos=[
   {nome:"ARQUIVO",end:"R. Voluntários da Pátria, 596 - Santana",cep:"02010-000",lat:-23.5028,lng:-46.6275},
@@ -395,63 +458,76 @@ const postos=[
   {nome:"THEATRO MUNICIPAL",end:"Praça Ramos de Azevedo, s/n - República",cep:"01037-010",lat:-23.5453,lng:-46.6384}
 ];
 
-const SHEETS_URL='https://script.google.com/macros/s/AKfycbxQpo4SBrqqv01pEfs_0tFjbSBJwiI6MRkrfdGW4JpkGnKiGyCsDXKLM8xgZhOpWR8_NA/exec';
-let candidatos=[];
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxQpo4SBrqqv01pEfs_0tFjbSBJwiI6MRkrfdGW4JpkGnKiGyCsDXKLM8xgZhOpWR8_NA/exec';
+let candidatos = [];
 
-function g(c,...keys){for(const k of keys){if(c[k]!==undefined&&c[k]!==null&&String(c[k]).trim()!=='')return String(c[k]);}return'';}
-
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-async function carregarCandidatos(){
-  try{
-    document.getElementById('table-body').innerHTML='<div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">Carregando candidatos...</div></div>';
-    const resp=await fetch(SHEETS_URL);
-    const data=await resp.json();
-    if(data.status==='ok'&&data.candidatos){
-      candidatos=data.candidatos.map((c,i)=>({
-        id:i+1,
-        nome:g(c,'Nome','nome'),
-        email:g(c,'Email','email'),
-        tel:g(c,'Telefone','telefone'),
-        cpf:g(c,'CPF','cpf'),
-        nasc:g(c,'Nascimento','nascimento'),
-        cep:g(c,'CEP','cep'),
-        trab:g(c,'Trabalhando','trabalhando'),
-        exp:g(c,'Experiência','Experiencia','experiencia'),
-        recic:g(c,'Reciclagem','reciclagem'),
-        aph:(g(c,'APH','aph')).toLowerCase()==='sim'||(g(c,'APH','aph'))==='true',
-        dea:(g(c,'DEA','dea')).toLowerCase()==='sim'||(g(c,'DEA','dea'))==='true',
-        nr:g(c,'Cursos','cursos','cursos_nr'),
-        curriculo:g(c,'Currículo','Curriculo','curriculo'),
-        lat:-23.5505,lng:-46.6333,
-        tecnicos:[g(c,'Q1'),g(c,'Q2'),g(c,'Q3'),g(c,'Q4'),g(c,'Q5'),g(c,'Q6'),g(c,'Q7'),g(c,'Q8'),g(c,'Q9'),g(c,'Q10'),g(c,'Q11'),g(c,'Q12'),g(c,'Q13'),g(c,'Q14'),g(c,'Q15'),g(c,'Q16'),g(c,'Q17'),g(c,'Q18'),g(c,'Q19')],
-        comportamentais:[g(c,'Q20'),g(c,'Q21'),g(c,'Q22'),g(c,'Q23'),g(c,'Q24'),g(c,'Q25'),g(c,'Q26'),g(c,'Q27')]
+async function carregarCandidatos() {
+  try {
+    document.getElementById('table-body').innerHTML = '<div class="empty"><div class="empty-icon">⏳</div><div class="empty-title">Carregando candidatos...</div><div class="empty-sub">Aguarde alguns segundos...</div></div>';
+    const resp = await fetch(SHEETS_URL + "?callback=?");
+    const data = await resp.json();
+    if (data.status === 'ok' && data.candidatos) {
+      candidatos = data.candidatos.map((c, i) => {
+        // Log para debug
+        console.log('Candidato', i+1, ':', c['Nome'], '| CPF:', c['CPF'], '| Tel:', c['Telefone']);
+        return {
+        id: i + 1,
+        nome: c['Nome'] ? c['Nome'].trim() : '',
+        email: c['Email'] ? c['Email'].trim() : '',
+        tel: c['Telefone'] ? c['Telefone'].toString().trim() : '',
+        cpf: c['CPF'] ? c['CPF'].toString().trim() : '',
+        nasc: c['Nascimento'] ? c['Nascimento'].trim() : '',
+        cep: c['CEP'] ? c['CEP'].toString().trim() : '',
+        trab: c['Trabalhando'] ? c['Trabalhando'].trim() : '',
+        exp: c['Experiência'] ? c['Experiência'].trim() : '',
+        recic: c['Reciclagem'] ? c['Reciclagem'].trim() : '',
+        aph: (c['APH'] || '').toString().toLowerCase() === 'sim',
+        dea: (c['DEA'] || '').toString().toLowerCase() === 'sim',
+        nr: c['Cursos'] ? c['Cursos'].trim() : '',
+        lat: -23.5505,
+        lng: -46.6333,
+        tecnicos: [
+          c['Q1 - Motivo']||'', c['Q2 - Civil x Militar']||'', c['Q3 - Brigada']||'',
+          c['Q4 - Extintores']||'', c['Q5 - Inspeção Extintores']||'', c['Q6 - Inspeção Hidrantes']||'',
+          c['Q7 - Hidrante Avariado']||'', c['Q8 - Extintor Vencido']||'', c['Q9 - Abrigo Hidrante']||'',
+          c['Q10 - Linha Mangueira']||'', c['Q11 - Emergência Trauma']||'', c['Q12 - Emergência Clínica']||'',
+          c['Q13 - Curto Circuito']||'', c['Q14 - Vítima Fumaça']||'', c['Q15 - Fratura']||'',
+          c['Q16 - Evacuação']||'', c['Q17 - Queimaduras']||'', c['Q18 - DEA']||'', c['Q19 - Elevador']||''
+        ],
+        comportamentais: [
+          c['Q20 - Equipe']||'', c['Q21 - Técnico x Emocional']||'', c['Q22 - Pânico']||'',
+          c['Q23 - Desafio']||'', c['Q24 - Atualização']||'', c['Q25 - Divergência']||'',
+          c['Q26 - Responsabilidade']||'', c['Q27 - Contribuição']||''
+        ]
       }));
-      for(let c of candidatos){
-        try{
-          const cep=(c.cep||'').replace(/\D/g,'');
-          if(cep.length===8){
-            const viacep=await fetch('https://viacep.com.br/ws/'+cep+'/json/');
-            const addr=await viacep.json();
-            if(!addr.erro){
-              const q=encodeURIComponent((addr.logradouro||'')+', '+addr.localidade+', '+addr.uf+', Brasil');
-              const geo=await fetch('https://nominatim.openstreetmap.org/search?format=json&q='+q+'&limit=1',{headers:{'User-Agent':'SempreVidas/1.0'}});
-              const geoData=await geo.json();
-              if(geoData&&geoData[0]){c.lat=parseFloat(geoData[0].lat);c.lng=parseFloat(geoData[0].lon);}
+      // Converter CEP em coordenadas reais via API
+      for (let c of candidatos) {
+        try {
+          const cep = (c.cep || '').replace(/\D/g,'');
+          if (cep.length === 8) {
+            const viacep = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+            const addr = await viacep.json();
+            if (!addr.erro) {
+              const logradouro = encodeURIComponent((addr.logradouro || '') + ', ' + addr.localidade + ', ' + addr.uf + ', Brasil');
+              const geo = await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + logradouro + '&limit=1', {headers: {'User-Agent': 'SempreVidas/1.0'}});
+              const geoData = await geo.json();
+              if (geoData && geoData[0]) {
+                c.lat = parseFloat(geoData[0].lat);
+                c.lng = parseFloat(geoData[0].lon);
+                c.endereco = addr.logradouro + ', ' + addr.bairro + ' - ' + addr.localidade;
+              }
             }
           }
-        }catch(e){}
+        } catch(e) {
+          console.log('Erro no CEP:', c.cep);
+        }
       }
     }
-    document.getElementById('stat-total').textContent=candidatos.length;
+    document.getElementById('stat-total').textContent = candidatos.length;
     verTodos();
-  }catch(err){
-    document.getElementById('table-body').innerHTML='<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Erro ao carregar dados</div><div class="empty-sub">Verifique a conexão com o Google Sheets</div></div>';
+  } catch(err) {
+    console.error('Erro ao carregar candidatos:', err);
+    document.getElementById('table-body').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Erro ao carregar dados</div><div class="empty-sub">Verifique a conexão com o Google Sheets</div></div>';
   }
 }
 
@@ -461,12 +537,16 @@ function fazerLogin(){
   if(document.getElementById('login-senha').value===SENHA){
     document.getElementById('login-overlay').style.display='none';
     carregarCandidatos();
-  }else{
+  } else {
     document.getElementById('login-erro').style.display='block';
     document.getElementById('login-senha').value='';
   }
 }
-function sair(){document.getElementById('login-overlay').style.display='flex';document.getElementById('login-senha').value='';document.getElementById('login-erro').style.display='none';}
+function sair(){
+  document.getElementById('login-overlay').style.display='flex';
+  document.getElementById('login-senha').value='';
+  document.getElementById('login-erro').style.display='none';
+}
 
 function init(){
   const sel=document.getElementById('select-posto');
@@ -475,9 +555,10 @@ function init(){
     const o=document.createElement('option');o.value=i;o.textContent=p.nome;sel.appendChild(o);
     const d=document.createElement('div');d.className='posto-item';d.id='posto-'+i;
     d.innerHTML=`<div class="posto-item-nome">${p.nome}</div><div class="posto-item-cep">CEP: ${p.cep}</div>`;
-    d.onclick=()=>{sel.value=i;selecionarPosto();};
+    d.onclick=()=>{sel.value=i;selecionarPosto();buscarCandidatos();};
     lista.appendChild(d);
   });
+  // candidatos carregados via Google Sheets
 }
 
 function selecionarPosto(){
@@ -490,73 +571,120 @@ function selecionarPosto(){
   document.getElementById('posto-info').classList.add('show');
   document.getElementById('posto-info-nome').textContent='📍 '+postoSelecionado.nome;
   document.getElementById('posto-info-end').textContent=postoSelecionado.end+' — CEP: '+postoSelecionado.cep;
-  verTodos();
 }
 
-function distKm(a,b,c,d){const R=6371,dL=(c-a)*Math.PI/180,dG=(d-b)*Math.PI/180;const x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dG/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+function distKm(a,b,c,d){
+  const R=6371,dL=(c-a)*Math.PI/180,dG=(d-b)*Math.PI/180;
+  const x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dG/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+}
 
-const pergTec=["Por que escolheu a profissão de Bombeiro Civil?","Diferença entre Bombeiro Civil e Bombeiro Militar","O que é Brigada de Incêndio e a função do Bombeiro Civil?","Principais tipos de extintores e suas utilizações","Como realizar inspeção preventiva em extintores?","Como realizar inspeção preventiva em hidrantes e mangueiras?","Conduta diante de hidrante com avaria de vazamento","Conduta diante de extintor vencido/avariado/sem pressão","Itens fundamentais de um abrigo de hidrante","Como montar uma linha de mangueira a partir de hidrante de coluna?","Equipe de emergência para incêndios/traumas — número?","Equipe de emergência para casos clínicos — número?","O que faria diante de curto-circuito em quadro elétrico?","Salvamento de vítima inconsciente em ambiente com fumaça","Passo a passo para imobilização de membro fraturado","Como conduzir evacuação de pessoas em pânico?","Primeiro atendimento a vítima com queimaduras","Para que serve o DEA?","Conduta em caso de vítima presa em elevador"];
-const pergComp=["Já precisou agir em equipe durante uma emergência? Como foi?","O que é mais importante: conhecimento técnico ou calma emocional?","Como reage diante de pessoas em pânico que não colaboram?","Maior desafio enfrentado na carreira (ou treinamento)","Como se mantém atualizado sobre normas e procedimentos?","Em divergência técnica com colega durante emergência, qual postura adotar?","O que significa ser responsável pela vida de outras pessoas?","Se contratado, qual contribuição traria para a equipe e empresa?"];
+function buscarCandidatos(){
+  if(!postoSelecionado){alert('Selecione um posto primeiro!');return;}
+  const dm=parseFloat(document.getElementById('distancia-max').value);
+  const lista=candidatos.map(c=>({...c,dist:distKm(postoSelecionado.lat,postoSelecionado.lng,c.lat,c.lng)})).sort((a,b)=>a.dist-b.dist);
+  const prox=lista.filter(c=>c.dist<=dm);
+  document.getElementById('stat-total').textContent=candidatos.length;
+  document.getElementById('stat-proximos').textContent=prox.length;
+  document.getElementById('stat-dist').textContent=lista[0]?lista[0].dist.toFixed(1)+' km':'—';
+  document.getElementById('table-title').textContent='Candidatos mais próximos — '+postoSelecionado.nome;
+  document.getElementById('table-sub').textContent=prox.length+' dentro de '+dm+' km · '+lista.length+' total';
 
-function abrirJusbrasil(){
-  if(!candidatoAtual)return;
-  const cpf=(candidatoAtual.cpf||'').replace(/\D/g,'');
-  const texto=cpf||candidatoAtual.nome;
-  navigator.clipboard.writeText(texto).then(()=>{
-    showToast('✅ CPF copiado! Cole no campo de busca do Jusbrasil.');
-  }).catch(()=>{
-    showToast('CPF: '+texto+' — copie e cole no Jusbrasil');
+  let html=`<table><thead><tr><th>#</th><th>Candidato</th><th>CEP</th><th>Distância</th><th>Experiência</th><th>Certificações</th><th>Ações</th></tr></thead><tbody>`;
+  lista.forEach((c,i)=>{
+    const rk=i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n';
+    const rl=i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1);
+    const dc=c.dist<=5?'dist-perto':c.dist<=15?'dist-medio':'dist-longe';
+    const op=c.dist<=dm?'':'opacity:0.4;';
+    html+=`<tr class="clickable" style="${op}">
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})"><div class="rank ${rk}">${rl}</div></td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})"><strong>${c.nome}</strong><br><span style="font-size:11px;color:var(--cinza)">${c.email||''}</span></td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})" style="font-size:12px;color:var(--cinza)">${c.cep}</td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})"><span class="dist-badge ${dc}">${c.dist.toFixed(1)} km</span></td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})" style="font-size:12px">${c.exp}</td>
+      <td onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})" style="font-size:12px">${[c.aph?'APH':'',c.dea?'DEA':''].filter(Boolean).join(', ')||'—'}</td>
+      <td>
+        <button class="btn-acao btn-ver" onclick="abrirPerfil(${c.id},${c.dist.toFixed(2)})">👁 Ver perfil</button>
+        <button class="btn-acao btn-editar" onclick="abrirEditar(${c.id})">✏️</button>
+        <button class="btn-acao btn-excluir" onclick="abrirExcluir(${c.id})">🗑️</button>
+      </td>
+    </tr>`;
   });
-  window.open('https://www.jusbrasil.com.br/consulta-processual/','_blank');
+  html+='</tbody></table>';
+  document.getElementById('table-body').innerHTML=html;
 }
 
-function abrirPerfil(id,dist){
-  const c=candidatos.find(x=>x.id===id);if(!c)return;
+const pergTec=["Por que escolheu a profissão?","Diferença entre Civil e Militar","O que é Brigada de Incêndio?","Tipos de extintores e utilizações","Inspeção preventiva em extintores","Inspeção preventiva em hidrantes","Conduta: hidrante com avaria","Conduta: extintor vencido/avariado","Itens do abrigo de hidrante","Como montar linha de mangueira","Emergência externa para traumas (número)","Emergência externa para casos clínicos (número)","Conduta em curto-circuito","Salvamento de vítima em ambiente com fumaça","Imobilização de membro fraturado","Evacuação de pessoas em pânico","Primeiro atendimento a queimaduras","Para que serve o DEA?","Vítima presa em elevador"];
+const pergComp=["Atuação em equipe durante emergência","Técnico vs calma emocional","Como reage a pessoas em pânico","Maior desafio na carreira","Como se mantém atualizado","Divergência técnica com colega","O que significa ser responsável por vidas","Contribuição para a equipe"];
+
+function abrirPerfil(id, dist){
+  const c=candidatos.find(x=>x.id===id);
+  if(!c)return;
   candidatoAtual=c;
-  const iniciais=c.nome.split(' ').slice(0,2).map(p=>p[0]||'').join('').toUpperCase();
+  const iniciais=c.nome.split(' ').slice(0,2).map(p=>p[0]).join('').toUpperCase();
   document.getElementById('p-avatar').textContent=iniciais;
   document.getElementById('p-nome').textContent=c.nome;
   document.getElementById('p-sub').textContent=c.email||c.tel;
-  document.getElementById('p-tel').textContent=c.tel||'—';
+  document.getElementById('p-tel').textContent=c.tel;
   document.getElementById('p-cpf').textContent=c.cpf||'—';
   document.getElementById('p-nasc').textContent=c.nasc||'—';
-  document.getElementById('p-cep').textContent=c.cep||'—';
+  document.getElementById('p-cep').textContent=c.cep;
+  const zonaEl = document.getElementById('p-zona');
+  if(zonaEl) {
+    const zona = getZona(c.cep);
+    const cores = getZonaCor(zona).split('|');
+    zonaEl.innerHTML = `<span style="background:${cores[0]};color:${cores[1]};padding:3px 12px;border-radius:100px;font-size:12px;font-weight:700;">${zona}</span>`;
+  }
   document.getElementById('p-email').textContent=c.email||'—';
   document.getElementById('p-trab').textContent=c.trab||'—';
   document.getElementById('p-exp').textContent=c.exp||'—';
   document.getElementById('p-recic').textContent=c.recic||'—';
   document.getElementById('p-nr').textContent=c.nr||'—';
+
   const certs=document.getElementById('p-certs');
   certs.innerHTML=`<span class="cert-badge ${c.aph?'':'no'}">${c.aph?'✓':'✗'} APH</span><span class="cert-badge ${c.dea?'':'no'}">${c.dea?'✓':'✗'} DEA</span>`;
-  document.getElementById('p-cv-section').style.display=(c.curriculo&&c.curriculo.startsWith('http'))?'block':'none';
-  if(postoSelecionado&&dist){
+
+  if(postoSelecionado && dist){
+    const dc=dist<=5?'dist-perto':dist<=15?'dist-medio':'dist-longe';
     document.getElementById('p-dist-km').textContent=parseFloat(dist).toFixed(1)+' km';
+    document.getElementById('p-dist-km').className='dist-card-km';
     document.getElementById('p-dist-posto').textContent='do '+postoSelecionado.nome;
-  }else{
+  } else {
     document.getElementById('p-dist-km').textContent='—';
     document.getElementById('p-dist-posto').textContent='Nenhum posto selecionado';
   }
-  document.getElementById('p-tecnicos').innerHTML=pergTec.map((p,i)=>`<div class="resposta-item"><div class="resposta-pergunta">${p}</div><div class="resposta-texto">${c.tecnicos[i]||'<em style="color:#aaa">Não respondido</em>'}</div></div>`).join('');
-  document.getElementById('p-comportamentais').innerHTML=pergComp.map((p,i)=>`<div class="resposta-item"><div class="resposta-pergunta">${p}</div><div class="resposta-texto">${c.comportamentais[i]||'<em style="color:#aaa">Não respondido</em>'}</div></div>`).join('');
-  trocarAba(0,document.querySelector('.aba'));
+
+  const tec=document.getElementById('p-tecnicos');
+  tec.innerHTML=(c.tecnicos||[]).map((r,i)=>`<div class="resposta-item"><div class="resposta-pergunta">${pergTec[i]||'Pergunta '+(i+1)}</div><div class="resposta-texto">${r}</div></div>`).join('');
+
+  const comp=document.getElementById('p-comportamentais');
+  comp.innerHTML=(c.comportamentais||[]).map((r,i)=>`<div class="resposta-item"><div class="resposta-pergunta">${pergComp[i]||'Pergunta '+(i+1)}</div><div class="resposta-texto">${r}</div></div>`).join('');
+
+  trocarAba(0, document.querySelector('.aba'));
   document.getElementById('modal-perfil').classList.add('open');
 }
 
-function abrirCV(){if(candidatoAtual&&candidatoAtual.curriculo)window.open(candidatoAtual.curriculo,'_blank');}
-
 function abrirMaps(){
-  if(!candidatoAtual)return;
-  if(!postoSelecionado){alert('Selecione um posto primeiro!');return;}
-  const cep=(candidatoAtual.cep||'').replace(/\D/g,'');
-  window.open('https://www.google.com/maps/dir/'+encodeURIComponent(cep+', São Paulo, SP, Brasil')+'/'+encodeURIComponent(postoSelecionado.end+', São Paulo, SP, Brasil'),'_blank');
+  if(!candidatoAtual) return;
+  const cepCandidato = (candidatoAtual.cep||'').replace(/\D/g,'');
+  let destino = '';
+  if(postoSelecionado){
+    destino = postoSelecionado.end + ', São Paulo, SP, Brasil';
+  } else {
+    alert('Selecione um posto primeiro para traçar a rota!');
+    return;
+  }
+  const origem = cepCandidato + ', São Paulo, SP, Brasil';
+  const url = 'https://www.google.com/maps/dir/' + encodeURIComponent(origem) + '/' + encodeURIComponent(destino);
+  window.open(url, '_blank');
 }
 
 function fecharPerfil(){document.getElementById('modal-perfil').classList.remove('open');}
 
-function trocarAba(idx,el){
+function trocarAba(idx, el){
   document.querySelectorAll('.aba').forEach(a=>a.classList.remove('active'));
   document.querySelectorAll('.aba-content').forEach(c=>c.classList.remove('active'));
-  if(el)el.classList.add('active');
+  if(el) el.classList.add('active');
   else document.querySelectorAll('.aba')[idx].classList.add('active');
   document.getElementById('aba-'+idx).classList.add('active');
 }
@@ -583,7 +711,8 @@ function salvarEdicao(){
   candidatos[idx].exp=document.getElementById('edit-exp').value;
   candidatos[idx].aph=document.getElementById('edit-aph').value==='true';
   candidatos[idx].dea=document.getElementById('edit-dea').value==='true';
-  fecharEditar();verTodos();
+  fecharEditar();
+  if(postoSelecionado)buscarCandidatos();
 }
 
 function abrirExcluir(id){
@@ -593,65 +722,105 @@ function abrirExcluir(id){
   document.getElementById('confirm-excluir').classList.add('open');
 }
 function fecharConfirm(){document.getElementById('confirm-excluir').classList.remove('open');excluindoId=null;}
-function confirmarExclusao(){
-  candidatos=candidatos.filter(x=>x.id!==excluindoId);
-  fecharConfirm();fecharPerfil();
-  document.getElementById('stat-total').textContent=candidatos.length;
+async function confirmarExclusao(){
+  const c = candidatos.find(x=>x.id===excluindoId);
+  if (!c) return;
+  
+  try {
+    await fetch(SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({action: 'delete', cpf: c.cpf})
+    });
+  } catch(e) { console.log('Erro ao excluir:', e); }
+  
+  candidatos = candidatos.filter(x=>x.id!==excluindoId);
+  fecharConfirm();
+  fecharPerfil();
+  document.getElementById('stat-total').textContent = candidatos.length;
   verTodos();
 }
 
 function verTodos(){
-  const filtroZona=(document.getElementById('filtro-zona')||{}).value||'';
-  const filtroExp=(document.getElementById('filtro-exp')||{}).value||'';
-  const filtroAph=(document.getElementById('filtro-aph')||{}).value||'';
-  const filtroDea=(document.getElementById('filtro-dea')||{}).value||'';
-  let lista=candidatos.filter(c=>{
-    if(filtroZona&&getZona(c.cep)!==filtroZona)return false;
-    if(filtroExp&&c.exp!==filtroExp)return false;
-    if(filtroAph==='sim'&&!c.aph)return false;
-    if(filtroAph==='nao'&&c.aph)return false;
-    if(filtroDea==='sim'&&!c.dea)return false;
-    if(filtroDea==='nao'&&c.dea)return false;
+  const filtroZona = (document.getElementById('filtro-zona')||{}).value || '';
+  const filtroExp = (document.getElementById('filtro-exp')||{}).value || '';
+  const filtroAph = (document.getElementById('filtro-aph')||{}).value || '';
+  const filtroDea = (document.getElementById('filtro-dea')||{}).value || '';
+
+  let lista = candidatos.filter(c => {
+    if (filtroZona && getZona(c.cep) !== filtroZona) return false;
+    if (filtroExp && c.exp !== filtroExp) return false;
+    if (filtroAph === 'sim' && !c.aph) return false;
+    if (filtroAph === 'nao' && c.aph) return false;
+    if (filtroDea === 'sim' && !c.dea) return false;
+    if (filtroDea === 'nao' && c.dea) return false;
     return true;
   });
-  if(postoSelecionado){
-    lista=lista.map(c=>({...c,dist:distKm(postoSelecionado.lat,postoSelecionado.lng,c.lat,c.lng)})).sort((a,b)=>a.dist-b.dist);
-    const prox=lista.filter(c=>c.dist<=20);
-    document.getElementById('stat-proximos').textContent=prox.length;
-    document.getElementById('stat-dist').textContent=lista[0]?lista[0].dist.toFixed(1)+' km':'—';
-    document.getElementById('table-title').textContent='Candidatos próximos — '+postoSelecionado.nome;
-  }else{
-    document.getElementById('stat-proximos').textContent=lista.length;
-    document.getElementById('stat-dist').textContent='—';
-    document.getElementById('table-title').textContent='Candidatos';
+
+  document.getElementById('stat-proximos').textContent = lista.length;
+  document.getElementById('stat-dist').textContent = '—';
+  document.getElementById('table-title').textContent = 'Candidatos';
+  document.getElementById('table-sub').textContent = lista.length + ' de ' + candidatos.length + ' candidatos';
+
+  if (lista.length === 0) {
+    document.getElementById('table-body').innerHTML = '<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Nenhum candidato encontrado</div><div class="empty-sub">Tente mudar os filtros</div></div>';
+    return;
   }
-  document.getElementById('table-sub').textContent=lista.length+' de '+candidatos.length+' candidatos';
-  document.getElementById('stat-total').textContent=candidatos.length;
-  if(lista.length===0){document.getElementById('table-body').innerHTML='<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Nenhum candidato encontrado</div><div class="empty-sub">Tente mudar os filtros</div></div>';return;}
-  const zonaCores={'Centro':'#EFF6FF|#1D4ED8','Zona Norte':'#F0FDF4|#166534','Zona Sul':'#FEF3C7|#92400E','Zona Leste':'#FEF2F2|#991B1B','Zona Oeste':'#F5F3FF|#5B21B6','Grande SP':'#F1F5F9|#475569','—':'#F1F5F9|#475569'};
-  let html='<table><thead><tr><th>#</th><th>Candidato</th><th>Zona</th><th>Experiência</th><th>Certificações</th><th>Contato</th><th>Ações</th></tr></thead><tbody>';
-  lista.forEach((c,i)=>{
-    const zona=getZona(c.cep);
-    const cores=(zonaCores[zona]||'#F1F5F9|#475569').split('|');
-    const zonaBadge=`<span style="background:${cores[0]};color:${cores[1]};padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700;">${zona}</span>`;
-    const certs=[c.aph?'APH':'',c.dea?'DEA':''].filter(Boolean).join(', ')||'—';
-    const distInfo=c.dist?`<br><span style="font-size:11px;color:#166534;font-weight:600;">${c.dist.toFixed(1)} km</span>`:'';
-    const cvBtn=c.curriculo&&c.curriculo.startsWith('http')?`<button class="btn-acao btn-cv" onclick="event.stopPropagation();window.open('${c.curriculo}','_blank')">📄 CV</button>`:'';
-    html+=`<tr class="clickable" onclick="abrirPerfil(${c.id},${c.dist||0})">
+
+  const zonaCores = {
+    'Centro':'#EFF6FF|#1D4ED8',
+    'Zona Norte':'#F0FDF4|#166534',
+    'Zona Sul':'#FEF3C7|#92400E',
+    'Zona Leste':'#FEF2F2|#991B1B',
+    'Zona Oeste':'#F5F3FF|#5B21B6',
+    'Grande SP':'#F1F5F9|#475569',
+    '—':'#F1F5F9|#475569'
+  };
+
+  let html = '<table><thead><tr><th>#</th><th>Candidato</th><th>Zona</th><th>Experiência</th><th>Certificações</th><th>Contato</th><th>Ações</th></tr></thead><tbody>';
+  lista.forEach((c, i) => {
+    const zona = getZona(c.cep);
+    const cores = (zonaCores[zona]||'#F1F5F9|#475569').split('|');
+    const zonaBadge = `<span style="background:${cores[0]};color:${cores[1]};padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700;">${zona}</span>`;
+    const certs = [c.aph?'APH':'',c.dea?'DEA':''].filter(Boolean).join(', ')||'—';
+    html += `<tr class="clickable">
       <td>${i+1}</td>
-      <td><strong>${c.nome}</strong><br><span style="font-size:11px;color:var(--cinza)">${c.email||''}</span></td>
-      <td>${zonaBadge}<br><span style="font-size:11px;color:var(--cinza);margin-top:3px;display:block;">${c.cep||''}</span>${distInfo}</td>
+      <td onclick="abrirPerfil(${c.id},null)"><strong>${c.nome}</strong><br><span style="font-size:11px;color:var(--cinza)">${c.email||''}</span></td>
+      <td>${zonaBadge}<br><span style="font-size:11px;color:var(--cinza);margin-top:3px;display:block;">${c.cep||''}</span></td>
       <td style="font-size:12px">${c.exp||'—'}</td>
       <td style="font-size:12px">${certs}</td>
       <td style="font-size:12px;color:var(--cinza)">${c.tel||'—'}</td>
-      <td onclick="event.stopPropagation()">${cvBtn}<button class="btn-acao btn-ver" onclick="abrirPerfil(${c.id},${c.dist||0})">👁 Ver</button><button class="btn-acao btn-excluir" onclick="abrirExcluir(${c.id})">🗑️</button></td>
+      <td>
+        <button class="btn-acao btn-ver" onclick="abrirPerfil(${c.id},null)">👁 Ver</button>
+        <button class="btn-acao btn-editar" onclick="abrirEditar(${c.id})">✏️</button>
+        <button class="btn-acao btn-excluir" onclick="abrirExcluir(${c.id})">🗑️</button>
+      </td>
     </tr>`;
   });
-  html+='</tbody></table>';
-  document.getElementById('table-body').innerHTML=html;
+  html += '</tbody></table>';
+  document.getElementById('table-body').innerHTML = html;
+  document.getElementById('stat-total').textContent = candidatos.length;
 }
 
-function limparFiltros(){['filtro-zona','filtro-exp','filtro-aph','filtro-dea'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});verTodos();}
+function limparFiltros(){
+  const els = ['filtro-zona','filtro-exp','filtro-aph','filtro-dea'];
+  els.forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  verTodos();
+}
+
+function limpar(){
+  postoSelecionado=null;
+  document.getElementById('select-posto').value='';
+  document.querySelectorAll('.posto-item').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('posto-info').classList.remove('show');
+  document.getElementById('stat-proximos').textContent='0';
+  document.getElementById('stat-dist').textContent='—';
+  document.getElementById('table-title').textContent='Candidatos ordenados por proximidade';
+  document.getElementById('table-sub').textContent='Selecione um posto para começar';
+  document.getElementById('table-body').innerHTML='<div class="empty"><div class="empty-icon">🗺️</div><div class="empty-title">Selecione um posto</div><div class="empty-sub">Escolha o posto com vaga e clique em "Buscar candidatos próximos"</div></div>';
+}
+
 init();
 </script>
 </body>
